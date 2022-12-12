@@ -4,10 +4,12 @@ import com.laundaryApplication.LaundaryManagingApplication.exceptions.NotFoundEx
 import com.laundaryApplication.LaundaryManagingApplication.model.Customer;
 import com.laundaryApplication.LaundaryManagingApplication.repository.CustomerDao;
 import com.laundaryApplication.LaundaryManagingApplication.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerServiceImp implements CustomerService {
+    @Autowired
     private CustomerDao cDao;
     @Override
     public Customer createCustomer(Customer customer) {

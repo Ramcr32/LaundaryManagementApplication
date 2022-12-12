@@ -4,10 +4,12 @@ import com.laundaryApplication.LaundaryManagingApplication.exceptions.NotFoundEx
 import com.laundaryApplication.LaundaryManagingApplication.model.Admin;
 import com.laundaryApplication.LaundaryManagingApplication.repository.AdminDao;
 import com.laundaryApplication.LaundaryManagingApplication.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImp implements AdminService {
+    @Autowired
     private AdminDao aDao;
     @Override
     public Admin createAdmin(Admin admin) {
