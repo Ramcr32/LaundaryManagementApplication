@@ -24,7 +24,7 @@ public class EmployeeController {
         Employee employee = empService.updateEmployee(emp);
         return new ResponseEntity<>(employee,HttpStatus.OK);
     }
-    @DeleteMapping("/empId")
+    @DeleteMapping("/{empId}")
     public ResponseEntity<Employee> updateEmpHandler(@PathVariable Integer empId){
         Employee employee = empService.deleteEmployee(empId);
         return new ResponseEntity<>(employee,HttpStatus.OK);
