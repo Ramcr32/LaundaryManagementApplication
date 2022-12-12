@@ -22,7 +22,7 @@ public class AdminController {
         Admin returnAdmin = adminService.updateAdmin(admin);
         return  new ResponseEntity<>(returnAdmin ,HttpStatus.ACCEPTED);
     }
-    @DeleteMapping("/adminId")
+    @DeleteMapping("/{adminId}")
     public ResponseEntity<Admin> deleteAdminHandler(@PathVariable Integer adminId){
         Admin returnAdmin = adminService.deleteAdmin(adminId);
         return  new ResponseEntity<>(returnAdmin, HttpStatus.OK);

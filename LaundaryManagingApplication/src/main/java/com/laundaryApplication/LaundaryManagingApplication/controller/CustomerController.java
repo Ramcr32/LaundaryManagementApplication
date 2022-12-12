@@ -22,7 +22,7 @@ public class CustomerController {
         Customer returnCustomer = customerService.updateCustomer(customer);
         return  new ResponseEntity<>(returnCustomer, HttpStatus.ACCEPTED);
     }
-    @DeleteMapping("/customerId")
+    @DeleteMapping("/{customerId}")
     public  ResponseEntity<Customer> deleteCustomerHandler(@PathVariable Integer customerId){
         Customer returnCustomer = customerService.deleteCustomer(customerId);
         return  new ResponseEntity<>(returnCustomer, HttpStatus.OK);
