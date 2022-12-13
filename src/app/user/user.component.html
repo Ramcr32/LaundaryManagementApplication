@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaundryManagement Application</title>
+</head>
+<body>
+    <div id="container">
+        <h1>laundry Management Application</h1>
+        <div>
+          <select name="select" id="option">
+            <option value="none">select</option>
+            <option value="admin">admin</option>
+            <option value="customer">customer</option>
+            <option value="employee">employee</option>
+          </select>
+        </div>
+        <form #userData="ngForm" (ngSubmit)="getData(userData.value)">
+              
+              <br>
+              name: <input type="text" name="name" ngModel />
+              <br>
+              mobile: <input type="text" name="mobile" ngModel />
+              <br>
+              password: <input type="password" name="password" ngModel />
+              <br>
+              email : <input type="email" name="email" ngModel />
+              <br>
+              <app-address ></app-address>
+              <input type="submit" value="submit">
+        </form>
+
+    </div>
+    <!-- <app-address></app-address> -->
+</body>
+</html>
