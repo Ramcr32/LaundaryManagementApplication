@@ -7,6 +7,8 @@ import com.laundaryApplication.LaundaryManagingApplication.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdminServiceImp implements AdminService {
     @Autowired
@@ -31,5 +33,10 @@ public class AdminServiceImp implements AdminService {
                 .orElseThrow(()->new NotFoundException("admin is not found with id " + adminId));
         aDao.delete(existingAdmin);
         return existingAdmin;
+    }
+
+    @Override
+    public List<Admin> getAll() {
+        return aDao.findAll();
     }
 }

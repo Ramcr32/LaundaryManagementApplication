@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
     private String userName;
     private String password;
