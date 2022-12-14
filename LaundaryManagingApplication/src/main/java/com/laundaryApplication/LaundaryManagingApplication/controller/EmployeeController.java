@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/Employee")
 @CrossOrigin(origins = "http://localhost:4200/")
@@ -30,5 +32,9 @@ public class EmployeeController {
         Employee employee = empService.deleteEmployee(empId);
         return new ResponseEntity<>(employee,HttpStatus.OK);
     }
-
+    @GetMapping("/")
+    public ResponseEntity<List<Employee>> getAllEmployeeHandler(){
+        List<Employee> list = empService.getAll();
+        return new ResponseEntity<>(list, HttpStatus.FOUND);
+    }
 }

@@ -7,6 +7,8 @@ import com.laundaryApplication.LaundaryManagingApplication.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeServiceImp implements EmpService {
     @Autowired
@@ -29,5 +31,10 @@ public class EmployeeServiceImp implements EmpService {
                 .orElseThrow(()-> new NotFoundException("not found employee with id "+ empId));
         eDao.delete(existingEmp);
         return existingEmp;
+    }
+
+    @Override
+    public List<Employee> getAll() {
+        return eDao.findAll();
     }
 }
