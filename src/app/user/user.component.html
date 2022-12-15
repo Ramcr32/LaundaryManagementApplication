@@ -7,10 +7,10 @@
   <title>LaundryManagement Application</title>
 </head>
 <body>
-    <div id="container">
-        <h1>laundry Management Application</h1>
+    <div id="container" >
+        <h3>Registration form</h3>
         <div>
-          <select name="select" id="option">
+          <select name="select" id="option" #userType (click)="getUser(userType.value)">
             <option value="none">select</option>
             <option value="admin">admin</option>
             <option value="customer">customer</option>
@@ -20,19 +20,29 @@
         <form #userData="ngForm" (ngSubmit)="getData(userData.value)">
               
               <br>
-              name: <input type="text" name="name" ngModel />
+              name: <input type="text" name="userName" [(ngModel)]="userName" />
               <br>
-              mobile: <input type="text" name="mobile" ngModel />
+              mobile: <input type="text" name="mobile" [(ngModel)]="mobile" />
               <br>
-              password: <input type="password" name="password" ngModel />
+              password: <input type="password" name="password" [(ngModel)]="password" />
               <br>
-              email : <input type="email" name="email" ngModel />
+              email : <input type="email" name="email" [(ngModel)]="email" />
               <br>
-              <app-address ></app-address>
+              city : <input type="text" name="city" [(ngModel)]="address.city" />
+              <br>
+              state : <input type="text" name="state" [(ngModel)]="address.state" />
+              <br>
+              pincode : <input type="text" name="pincode" [(ngModel)]="address.pincode" />
+              <br>
+              country : <input type="text" name="country" [(ngModel)]="address.country" />
+              <br>
               <input type="submit" value="submit">
         </form>
-
+          
     </div>
+    
+    <!-- <p>{{address | json}}</p> -->
     <!-- <app-address></app-address> -->
+    <app-user-table></app-user-table>
 </body>
 </html>

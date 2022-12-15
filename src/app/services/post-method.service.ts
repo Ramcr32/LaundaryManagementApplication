@@ -13,7 +13,16 @@ export class PostMethodService {
     return this.http.get(this.url);
 
   };
-  saveData(data : any){
-    return this.http.post(this.url,data);
+  url1="http://localhost:8888/admin/"
+  saveAdminData(data : any){
+    return this.http.post(this.url1,data);
+  }
+  url2="http://localhost:8888/customer/"
+  saveCustomerData(data: any){
+    return this.http.post(this.url2,data);
+  }
+  url3="http://localhost:8888/Employee/"
+  saveEmployeeData(data: any){
+    return this.http.post(this.url3,data);
   }
 }
