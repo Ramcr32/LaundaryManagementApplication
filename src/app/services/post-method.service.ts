@@ -25,4 +25,15 @@ export class PostMethodService {
   saveEmployeeData(data: any){
     return this.http.post(this.url3,data);
   }
+
+  //login
+  url4="http://localhost:8888/admin/login"
+  loginAdminData(data : any){
+    return this.http.post(this.url4,data);
+  }
+  //logout
+  url5="http://localhost:8888/admin/logout"
+  logoutAdminData(key : any){
+    return this.http.patch(this.url5,key);
+  }
 }
