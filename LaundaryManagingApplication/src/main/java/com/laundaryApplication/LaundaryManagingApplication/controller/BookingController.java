@@ -2,11 +2,15 @@ package com.laundaryApplication.LaundaryManagingApplication.controller;
 
 import com.laundaryApplication.LaundaryManagingApplication.model.ServiceBooking;
 import com.laundaryApplication.LaundaryManagingApplication.service.ServiceBookService;
+import com.laundaryApplication.LaundaryManagingApplication.util.validators.BookingServiceValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,21 +21,24 @@ public class BookingController {
     private ServiceBookService service;
 
     @PostMapping("/")
-    public ResponseEntity<ServiceBooking> createNewServiceHandler(@RequestBody ServiceBooking ser){
+    public ResponseEntity<ServiceBooking> createNewServiceHandler(@Valid @RequestBody ServiceBooking ser, BindingResult bindingResult){
+//        System.out.println(bindingResult.toString());
+        new BookingServiceValidator().validate(ser,bindingResult);
         ServiceBooking sr = service.bookNewService(ser);
         return new ResponseEntity<>(sr, HttpStatus.ACCEPTED);
 
     }
 
     @PutMapping("/")
-    public ResponseEntity<ServiceBooking> updateServiceHandler(@RequestBody ServiceBooking ser){
+    public ResponseEntity<ServiceBooking> updateServiceHandler(@RequestBody ServiceBooking ser,BindingResult bindingResult){
+        new BookingServiceValidator().validate(ser,bindingResult);
         ServiceBooking sr = service.updateService(ser);
         return new ResponseEntity<>(sr, HttpStatus.ACCEPTED);
 
     }
     @DeleteMapping("/{serviceId}")
-    public ResponseEntity<ServiceBooking> deleteServiceHandler(@PathVariable Integer serviceid){
-        ServiceBooking sr = service.deleteService(serviceid);
+    public ResponseEntity<ServiceBooking> deleteServiceHandler(@PathVariable Integer serviceId){
+        ServiceBooking sr = service.deleteService(serviceId);
         return new ResponseEntity<>(sr, HttpStatus.OK);
 
     }

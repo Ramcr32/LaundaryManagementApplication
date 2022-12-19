@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 @Entity
@@ -20,12 +21,10 @@ public class ServiceBooking {
     @NotNull
     private  Integer empId;
     @NotNull
+    @FutureOrPresent
     private LocalDate bookingDate;
     @NotNull
     private Integer piece;
     private Integer price;
-//    ServiceBooking(Integer piece){
-//        this.piece=piece;
-//        this.price=piece*10;
-//    }
+
 }
