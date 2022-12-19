@@ -10,9 +10,14 @@ export class BookingComponent {
   customerId:any;
   empId:any;
   bookingDate:any;
-  piece:any;
-  price:any;
+  piece:number=0;
+  price:number=this.piece*10;
   serviceData: any;
+  errMessage:any;
+
+  //login
+  email:any;
+  password:any;
   constructor(private booking: BookingServiceService){
     this.booking.getAllServiceData().subscribe((result)=>{
       console.log(result)
@@ -27,14 +32,20 @@ export class BookingComponent {
   };
   getBooking(data:any){
     console.log(data);
+    data.price=data.piece*10;
     this.booking.saveServiceData(data).subscribe((result : any)=>{
       console.log(result);
-    });
+    },err=>{
+      this.errMessage=err.error.message;
+      alert(this.errMessage);
+    }
+    );
     
     
   }
   editService(data: any){
     console.log(data)
+    data.price=data.piece*10;
     this.booking.updateService(data);
     setTimeout(function(){
       window.location.reload();

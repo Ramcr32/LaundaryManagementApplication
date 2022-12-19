@@ -8,14 +8,16 @@ import { UserComponent } from './user/user.component';
 import {HttpClientModule} from '@angular/common/http';
 import { AddressComponent } from './address/address.component';
 import { UserTableComponent } from './user-table/user-table.component';
-import { BookingComponent } from './booking/booking.component'
+import { BookingComponent } from './booking/booking.component';
+import { LoginComponent } from './login/login.component'
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     AddressComponent,
     UserTableComponent,
-    BookingComponent
+    BookingComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
