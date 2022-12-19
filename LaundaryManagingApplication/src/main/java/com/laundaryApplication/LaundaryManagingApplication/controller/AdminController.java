@@ -1,12 +1,15 @@
 package com.laundaryApplication.LaundaryManagingApplication.controller;
 
 import com.laundaryApplication.LaundaryManagingApplication.model.Admin;
+import com.laundaryApplication.LaundaryManagingApplication.model.UserDTO;
 import com.laundaryApplication.LaundaryManagingApplication.service.AdminService;
+import com.laundaryApplication.LaundaryManagingApplication.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -15,6 +18,9 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private SessionService sessionService;
     @PostMapping("/")
     public ResponseEntity<Admin> createNewAdminHandler(@RequestBody Admin admin){
         Admin returnAdmin =adminService.createAdmin(admin);
@@ -35,5 +41,17 @@ public class AdminController {
         List<Admin> list = adminService.getAll();
         return  new ResponseEntity<>(list, HttpStatus.OK);
     }
+    //for admin login
+    @PostMapping(value = "/login")
+    public String logInCustomer(@Valid @RequestBody UserDTO user) {
+        return sessionService.logIntoAccount(user);
+    }
+
+    // for admin Logout
+    @PatchMapping(value = "/logout")
+    public String logOutCustomer(@RequestParam(required = false) String key) {
+        return sessionService.logOutFromAccount(key);
+    }
+
 
 }

@@ -1,26 +1,30 @@
 package com.laundaryApplication.LaundaryManagingApplication.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Address {
+@AllArgsConstructor
+@NoArgsConstructor
+public class CurrentUserSession {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer userId;
+    private String email;
     @NotNull
-    private String city;
+    private String uuid;
     @NotNull
-    private String state;
-    @NotNull
-    private String pincode;
-    @NotNull
-    private  String country;
+    private LocalDateTime localDateTime;
+
 
 }
