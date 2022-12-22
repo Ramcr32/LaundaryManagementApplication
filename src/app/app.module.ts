@@ -9,7 +9,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { AddressComponent } from './address/address.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { BookingComponent } from './booking/booking.component';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import { AfterLogedInComponent } from './after-loged-in/after-loged-in.component';
+import { NavbarComponent } from './navbar/navbar.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,9 @@ import { LoginComponent } from './login/login.component'
     AddressComponent,
     UserTableComponent,
     BookingComponent,
-    LoginComponent
+    LoginComponent,
+    AfterLogedInComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
