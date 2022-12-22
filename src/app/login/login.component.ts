@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component ,EventEmitter,OnInit,Output} from '@angular/core';
 import { PostMethodService } from '../services/post-method.service';
+import { Router } from '@angular/router';
+import { DataTransferService } from '../services/data-transfer.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,20 +10,54 @@ import { PostMethodService } from '../services/post-method.service';
 export class LoginComponent {
   email:any;
   password: any;
-  errMessage: any;
-  errors : boolean=false;
-  constructor(private post : PostMethodService){};
-
+  errMessage: string="";
+  flag:boolean=false;
+  msg :string="";
+  // errors : boolean=false;
+  
+  constructor(private post : PostMethodService,private route : Router , private datatxr: DataTransferService){};
+  
   loginCheck(data:any){
+   
       console.log(data)
-      this.post.loginAdminData(data).subscribe(()=>{
-
-      },err=>{
-        this.errors =true;
-        this.errMessage= err.error.message;
+      this.post.loginAdminData(data).subscribe((result:any)=>{
+        // console.log(result.message);
+        this.msg=result.message;
+        localStorage.setItem("key",JSON.stringify(result.message));
         
+      },err=>{
+          // this.errMessage= err.error.message;
+          console.log(this.errMessage)
+      })
+      if(this.msg!=""){
+        this.datatxr.updateApprovalMessage(true);
       }
-      )
+      
+      // let d =  localStorage.getItem("key") 
+      
+      // this.datatxr.currentApprovalStageMessage.subscribe((errMessage)=>{
+      //       this.errMessage=errMessage
+      // })
 
+      
+      
+      
+      
+      
   }
+
+
+
+
+
+
+
+
+
+
+
+
+  // this.route.navigate(['after-login']);
+      // window.location.href='http://localhost:4200/';
+
 }
