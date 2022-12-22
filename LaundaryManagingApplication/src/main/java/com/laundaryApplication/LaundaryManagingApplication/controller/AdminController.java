@@ -1,5 +1,6 @@
 package com.laundaryApplication.LaundaryManagingApplication.controller;
 
+import com.laundaryApplication.LaundaryManagingApplication.exceptions.MyErrorDetails;
 import com.laundaryApplication.LaundaryManagingApplication.model.Admin;
 import com.laundaryApplication.LaundaryManagingApplication.model.UserDTO;
 import com.laundaryApplication.LaundaryManagingApplication.service.AdminService;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -43,14 +45,18 @@ public class AdminController {
     }
     //for admin login
     @PostMapping(value = "/login")
-    public String logInCustomer(@Valid @RequestBody UserDTO user) {
-        return sessionService.logIntoAccount(user);
+    public ResponseEntity<MyErrorDetails> logInCustomer(@Valid @RequestBody UserDTO user,Error error) {
+        String message = sessionService.logIntoAccount(user);
+        MyErrorDetails me = new MyErrorDetails(LocalDateTime.now(),message, error.getMessage());
+        return new ResponseEntity<>(me,HttpStatus.ACCEPTED);
     }
 
     // for admin Logout
     @PatchMapping(value = "/logout")
-    public String logOutCustomer(@RequestParam(required = false) String key) {
-        return sessionService.logOutFromAccount(key);
+    public ResponseEntity<MyErrorDetails> logOutCustomer(@RequestParam(required = false) String key,Error error) {
+        String message = sessionService.logOutFromAccount(key);
+        MyErrorDetails me = new MyErrorDetails(LocalDateTime.now(),message, error.getMessage());
+        return new ResponseEntity<>(me,HttpStatus.ACCEPTED);
     }
 
 
