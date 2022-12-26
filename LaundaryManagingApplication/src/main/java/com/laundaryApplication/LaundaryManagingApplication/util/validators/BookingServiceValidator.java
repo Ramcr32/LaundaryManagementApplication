@@ -1,10 +1,13 @@
 package com.laundaryApplication.LaundaryManagingApplication.util.validators;
 
+import com.laundaryApplication.LaundaryManagingApplication.controller.BookingController;
 import com.laundaryApplication.LaundaryManagingApplication.model.ServiceBooking;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
+@ControllerAdvice(assignableTypes = BookingController.class)
 public class BookingServiceValidator implements Validator {
     @Override
     public boolean supports(Class<?> clazz) {
@@ -17,7 +20,7 @@ public class BookingServiceValidator implements Validator {
         ValidationUtils.rejectIfEmpty(errors,"empId","employee id is must required");
         ServiceBooking service = (ServiceBooking) target;
         if(service.getPiece()<=0){
-            throw new IllegalArgumentException("give valid value of piece");
+            errors.reject("500","piece should not be zero");
         }
 
 

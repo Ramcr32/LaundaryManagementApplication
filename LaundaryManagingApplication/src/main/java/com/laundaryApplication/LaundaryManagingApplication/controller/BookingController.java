@@ -1,5 +1,6 @@
 package com.laundaryApplication.LaundaryManagingApplication.controller;
 
+import com.laundaryApplication.LaundaryManagingApplication.exceptions.MyErrorDetails;
 import com.laundaryApplication.LaundaryManagingApplication.model.ServiceBooking;
 import com.laundaryApplication.LaundaryManagingApplication.service.ServiceBookService;
 import com.laundaryApplication.LaundaryManagingApplication.util.validators.BookingServiceValidator;
@@ -8,9 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -19,11 +23,19 @@ import java.util.List;
 public class BookingController {
     @Autowired
     private ServiceBookService service;
+    @Autowired
+    private BookingServiceValidator validator;
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+      binder.setValidator(validator);
+    }
     @PostMapping("/")
-    public ResponseEntity<ServiceBooking> createNewServiceHandler(@Valid @RequestBody ServiceBooking ser, BindingResult bindingResult){
-//        System.out.println(bindingResult.toString());
-        new BookingServiceValidator().validate(ser,bindingResult);
+    public ResponseEntity<?> createNewServiceHandler(@Valid @RequestBody ServiceBooking ser, Errors errors, WebRequest wr){
+        if(errors.hasErrors()){
+          MyErrorDetails myErrorDetails = new MyErrorDetails(LocalDateTime.now(), errors.getFieldError().getDefaultMessage(),wr.getDescription(false));
+          return new ResponseEntity<>(myErrorDetails,HttpStatus.BAD_REQUEST);
+        }
         ServiceBooking sr = service.bookNewService(ser);
         return new ResponseEntity<>(sr, HttpStatus.ACCEPTED);
 
