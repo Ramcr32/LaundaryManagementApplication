@@ -33,7 +33,7 @@ public class BookingController {
     @PostMapping("/")
     public ResponseEntity<?> createNewServiceHandler(@Valid @RequestBody ServiceBooking ser, Errors errors, WebRequest wr){
         if(errors.hasErrors()){
-          System.out.println("afd");
+
           MyErrorDetails myErrorDetails = new MyErrorDetails(LocalDateTime.now(), errors.getFieldError().getDefaultMessage(),wr.getDescription(false));
           return new ResponseEntity<>(myErrorDetails,HttpStatus.BAD_REQUEST);
         }
@@ -43,8 +43,12 @@ public class BookingController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<ServiceBooking> updateServiceHandler(@RequestBody ServiceBooking ser,BindingResult bindingResult){
-        new BookingServiceValidator().validate(ser,bindingResult);
+    public ResponseEntity<?> updateServiceHandler(@RequestBody ServiceBooking ser,Errors errors, WebRequest wr){
+      if(errors.hasErrors()){
+
+        MyErrorDetails myErrorDetails = new MyErrorDetails(LocalDateTime.now(), errors.getFieldError().getDefaultMessage(),wr.getDescription(false));
+        return new ResponseEntity<>(myErrorDetails,HttpStatus.BAD_REQUEST);
+      }
         ServiceBooking sr = service.updateService(ser);
         return new ResponseEntity<>(sr, HttpStatus.ACCEPTED);
 

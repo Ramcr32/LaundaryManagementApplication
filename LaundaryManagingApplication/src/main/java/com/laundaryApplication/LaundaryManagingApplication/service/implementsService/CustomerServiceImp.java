@@ -25,4 +25,9 @@ public class CustomerServiceImp implements CustomerService {
     public Customer deleteCustomer(Integer customerId) throws NotFoundException {
         return null;
     }
+
+    @Override
+    public boolean findCustomerById(Integer customerId) {
+        return cDao.existsById(customerId);
+    }
 }

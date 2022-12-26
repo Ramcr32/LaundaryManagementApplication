@@ -8,6 +8,8 @@ public interface CustomerService {
     public Customer updateCustomer(Customer customer) throws NotFoundException;
     public Customer deleteCustomer(Integer customerId) throws NotFoundException;
 
+    public boolean findCustomerById(Integer customerId);
+
 }
 
 

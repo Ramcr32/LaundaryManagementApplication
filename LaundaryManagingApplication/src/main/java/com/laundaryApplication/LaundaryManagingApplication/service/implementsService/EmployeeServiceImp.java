@@ -37,4 +37,9 @@ public class EmployeeServiceImp implements EmpService {
     public List<Employee> getAll() {
         return eDao.findAll();
     }
+
+  @Override
+  public boolean findEmployeeById(Integer empId) {
+    return eDao.existsById(empId);
+  }
 }

@@ -9,4 +9,5 @@ public interface EmpService {
     public Employee updateEmployee(Employee emp);
     public Employee deleteEmployee(Integer empId);
     public List<Employee> getAll();
+    public boolean findEmployeeById(Integer empId);
 }

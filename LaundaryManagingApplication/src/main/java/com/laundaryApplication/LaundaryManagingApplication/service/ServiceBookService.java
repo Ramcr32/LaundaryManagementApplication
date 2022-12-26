@@ -14,4 +14,5 @@ public interface ServiceBookService {
     public List<ServiceBooking> allBookingsOfCustomer(Integer customerId) throws  NotFoundException;
 
 
+
 }
