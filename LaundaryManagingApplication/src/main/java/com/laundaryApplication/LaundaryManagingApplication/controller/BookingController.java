@@ -33,6 +33,7 @@ public class BookingController {
     @PostMapping("/")
     public ResponseEntity<?> createNewServiceHandler(@Valid @RequestBody ServiceBooking ser, Errors errors, WebRequest wr){
         if(errors.hasErrors()){
+          System.out.println("afd");
           MyErrorDetails myErrorDetails = new MyErrorDetails(LocalDateTime.now(), errors.getFieldError().getDefaultMessage(),wr.getDescription(false));
           return new ResponseEntity<>(myErrorDetails,HttpStatus.BAD_REQUEST);
         }
