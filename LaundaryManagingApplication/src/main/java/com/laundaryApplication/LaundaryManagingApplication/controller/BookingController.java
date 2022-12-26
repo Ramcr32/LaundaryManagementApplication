@@ -71,7 +71,7 @@ public class BookingController {
     }
     @GetMapping("/customers/{customerId}")
     public ResponseEntity<List<ServiceBooking> > getAllServicesByCustomerIdHandler(@PathVariable Integer customerId){
-        List<ServiceBooking> services = service.allServicesOfEmp(customerId);
+        List<ServiceBooking> services = service.allBookingsOfCustomer(customerId);
         return new ResponseEntity<>(services, HttpStatus.FOUND);
     }
 
