@@ -10,8 +10,8 @@ public interface ServiceBookService {
     public ServiceBooking updateService(ServiceBooking service) throws NotFoundException;
     public ServiceBooking deleteService(Integer serviceId) throws NotFoundException;
     public List<ServiceBooking> allBookingServices();
-    public List<ServiceBooking> allServicesOfEmp(Integer empId) throws NotFoundException;
-    public List<ServiceBooking> allBookingsOfCustomer(Integer customerId) throws  NotFoundException;
+    public List<ServiceBooking> allServicesOfEmp(Integer empId);
+    public List<ServiceBooking> allBookingsOfCustomer(Integer customerId) ;
 
 
 

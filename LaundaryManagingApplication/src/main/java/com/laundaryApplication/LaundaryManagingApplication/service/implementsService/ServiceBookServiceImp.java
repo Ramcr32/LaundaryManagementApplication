@@ -3,6 +3,7 @@ package com.laundaryApplication.LaundaryManagingApplication.service.implementsSe
 import com.laundaryApplication.LaundaryManagingApplication.exceptions.NotFoundException;
 import com.laundaryApplication.LaundaryManagingApplication.model.ServiceBooking;
 import com.laundaryApplication.LaundaryManagingApplication.repository.ServiceDao;
+import com.laundaryApplication.LaundaryManagingApplication.repository.criteriaApi.CustomDao;
 import com.laundaryApplication.LaundaryManagingApplication.service.ServiceBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ import java.util.List;
 public class ServiceBookServiceImp implements ServiceBookService {
     @Autowired
     private ServiceDao sDao;
+
+    @Autowired
+    private CustomDao customDao;
     @Override
     public ServiceBooking bookNewService(ServiceBooking service) {
         return sDao.save(service);
@@ -35,19 +39,19 @@ public class ServiceBookServiceImp implements ServiceBookService {
 
     @Override
     public List<ServiceBooking> allBookingServices() {
-        return sDao.findAll();
+        return customDao.findAllBookings();
     }
 
     @Override
-    public List<ServiceBooking> allServicesOfEmp(Integer empId) throws NotFoundException {
+    public List<ServiceBooking> allServicesOfEmp(Integer empId) {
 
-        List<ServiceBooking> services = sDao.findAllByEmpId(empId);
+        List<ServiceBooking> services = customDao.findAllByEmpId(empId);
         return services;
     }
 
     @Override
-    public List<ServiceBooking> allBookingsOfCustomer(Integer customerId) throws NotFoundException {
-        List<ServiceBooking> services = sDao.findAllByCustomerId(customerId);
+    public List<ServiceBooking> allBookingsOfCustomer(Integer customerId) {
+        List<ServiceBooking> services = customDao.findAllByCustomerId(customerId);
         return services;
     }
 }
