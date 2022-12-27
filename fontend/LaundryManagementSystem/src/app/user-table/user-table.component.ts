@@ -12,8 +12,6 @@ export class UserTableComponent {
 
     this.userData.getUrl().subscribe((data:any)=>{
 
-
-
       this.users=data;
 
       console.log(this.users);

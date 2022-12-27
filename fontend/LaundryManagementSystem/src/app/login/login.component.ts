@@ -27,7 +27,7 @@ export class LoginComponent {
         localStorage.setItem("key",JSON.stringify(result.message));
        
       },err=>{
-          // this.errMessage= err.error.message;
+          this.errMessage= err.error.message;
           console.log(this.errMessage)
       })
       if(this.msg!=""){
