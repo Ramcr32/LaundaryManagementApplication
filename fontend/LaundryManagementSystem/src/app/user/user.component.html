@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaundryManagement Application</title>
+</head>
+<body>
+    <div id="container" >
+        <h3>Registration form</h3>
+        <div>
+          <select name="select" id="option" #userType (click)="getUser(userType.value)">
+            <option value="none">select</option>
+            <option value="admin">admin</option>
+            <option value="customer">customer</option>
+            <option value="employee">employee</option>
+          </select>
+        </div>
+        <form #userData="ngForm" (ngSubmit)="getData(userData.value)">
+             
+              <br>
+              name: <input type="text" name="userName" [(ngModel)]="user.userName" />
+              <br>
+              mobile: <input type="text" name="mobile" [(ngModel)]="user.mobile" />
+              <br>
+              password: <input type="password" name="password" [(ngModel)]="user.password" />
+              <br>
+              email : <input type="email" name="email" [(ngModel)]="user.email" />
+              <br>
+              city : <input type="text" name="city" [(ngModel)]="address.city" />
+              <br>
+              state : <input type="text" name="state" [(ngModel)]="address.state" />
+              <br>
+              pincode : <input type="text" name="pincode" [(ngModel)]="address.pincode" />
+              <br>
+              country : <input type="text" name="country" [(ngModel)]="address.country" />
+              <br>
+              <input type="submit" value="submit">
+        </form>
+         
+    </div>
+   
+    <!-- <p>{{address | json}}</p> -->
+    <!-- <app-address></app-address> -->
+    <app-user-table></app-user-table>
+</body>
+</html>
+
