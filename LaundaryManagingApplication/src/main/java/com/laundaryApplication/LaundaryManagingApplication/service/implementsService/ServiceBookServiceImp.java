@@ -33,7 +33,7 @@ public class ServiceBookServiceImp implements ServiceBookService {
     public ServiceBooking deleteService(Integer serviceId) throws NotFoundException {
         ServiceBooking returnService = sDao.findById(serviceId)
                 .orElseThrow(()->new NotFoundException("not found service with id"+ serviceId));
-        sDao.delete(returnService);
+        customDao.BookingdeleteById(serviceId);
         return returnService;
     }
 

@@ -6,10 +6,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -35,6 +33,7 @@ public class CustomDaoImp implements  CustomDao{
         Root<ServiceBooking> serviceBookingRoot = cq.from(ServiceBooking.class);
         Predicate empIdPredicate = cb.equal(serviceBookingRoot.get("customerId"),customerId);
         cq.where(empIdPredicate);
+
         TypedQuery<ServiceBooking> query= entityManager.createQuery(cq);
 
         return query.getResultList();
@@ -47,5 +46,20 @@ public class CustomDaoImp implements  CustomDao{
         Root<ServiceBooking> serviceBookingRoot = cq.from(ServiceBooking.class);
         TypedQuery<ServiceBooking> query = entityManager.createQuery(cq);
         return query.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public ServiceBooking BookingdeleteById(Integer id) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaDelete<ServiceBooking> criteriaDelete = cb.createCriteriaDelete(ServiceBooking.class);
+        Root<ServiceBooking> serviceBookingRoot = criteriaDelete.from(ServiceBooking.class);
+        Predicate p = cb.equal(serviceBookingRoot.get("serviceId"),id);
+        criteriaDelete.where(p);
+//        ServiceBooking query = (ServiceBooking) entityManager.createQuery(criteriaDelete).getSingleResult();
+        entityManager.getTransaction().begin();
+        entityManager.createQuery(criteriaDelete).executeUpdate();
+        entityManager.getTransaction().commit();
+        return  null;
     }
 }
