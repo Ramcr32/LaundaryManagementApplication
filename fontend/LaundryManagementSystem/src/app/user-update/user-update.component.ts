@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../util/user';
 import { Address } from '../util/address';
+import { DataTransferService } from '../services/data-transfer.service';
 @Component({
   selector: 'app-user-update',
   templateUrl: './user-update.component.html',
@@ -28,7 +29,9 @@ export class UserUpdateComponent {
   }
 
 
-  constructor(private post:PostMethodService,private router:Router,private route:ActivatedRoute){  }
+  constructor(private post:PostMethodService,private router:Router,private route:ActivatedRoute,private dtxr:DataTransferService){
+    dtxr.updateApprovalMessage(true);
+    }
 
 
 

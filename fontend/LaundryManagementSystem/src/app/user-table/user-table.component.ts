@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PostMethodService } from '../services/post-method.service';
 import { Router } from '@angular/router';
+import { DataTransferService } from '../services/data-transfer.service';
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
@@ -9,8 +10,8 @@ import { Router } from '@angular/router';
 export class UserTableComponent {
   users : any;
 
-  constructor(private userData : PostMethodService, private router: Router){
-
+  constructor(private userData : PostMethodService, private router: Router, private dtxr: DataTransferService){
+    this.dtxr.updateApprovalMessage(true);
     this.userData.getCustomer().subscribe((data:any)=>{
       this.users=data;
       console.warn(this.users)

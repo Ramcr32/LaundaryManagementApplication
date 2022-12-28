@@ -3,6 +3,7 @@ import { Component ,EventEmitter,OnInit,Output} from '@angular/core';
 import { PostMethodService } from '../services/post-method.service';
 import { Router } from '@angular/router';
 import { DataTransferService } from '../services/data-transfer.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +17,8 @@ export class LoginComponent {
   msg :string="";
   // errors : boolean=false;
  
-  constructor(private post : PostMethodService,private route : Router , private datatxr: DataTransferService){};
+  constructor(private post : PostMethodService,private router : Router , private datatxr: DataTransferService,
+    private route : ActivatedRoute){};
  
   loginCheck(data:any){
    
@@ -32,6 +34,7 @@ export class LoginComponent {
       })
       if(this.msg!=""){
         this.datatxr.updateApprovalMessage(true);
+        this.router.navigate(['user-details']);
       }
      
       // let d =  localStorage.getItem("key")
