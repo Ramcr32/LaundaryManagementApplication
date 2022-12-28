@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { PostMethodService } from '../services/post-method.service';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-user-update',
   templateUrl: './user-update.component.html',
@@ -7,28 +9,15 @@ import { PostMethodService } from '../services/post-method.service';
 })
 export class UserUpdateComponent {
   user:any;
-  address:any;
+
   id:any;
   ngOnInit():void{
 
-
-
-
     this.id=this.route.snapshot.params['id'];
 
-    this.employeeService.getEmployeeById(this.id).subscribe(data=>{
+    this.post.getCustomerById(this.id) .subscribe((data:any)=>{
 
-      this.employee=data;
-
-      this.addresses=data.addresses;
-
-      this.designation=data.designation;
-
-      console.log(this.addresses);
-
-
-
-      //console.log(data);
+      this.user=data;
 
     })
 
@@ -37,33 +26,25 @@ export class UserUpdateComponent {
   }
 
 
+  constructor(private post:PostMethodService,private router:Router,private route:ActivatedRoute){  }
 
 
 
-
-  constructor(private employeeService:EmployeeService,private router:Router,private route:ActivatedRoute){
-
-
-
-  }
-
-
-
-  onSubmit(){
+  onUpdate(data:any){
 
     //console.log(this.employee);
 
-    console.log(this.employee);
+    // console.log(this.employee);
 
-    this.employeeService.updateEmployee(this.id,this.employee).subscribe(data=>{
+    // this.employeeService.updateEmployee(this.id,this.employee).subscribe(data=>{
 
-      console.log(data);
+    //   console.log(data);
 
-      this.goToEmployeeList();
+    //   this.goToEmployeeList();
 
-    },error=>
+    // },error=>
 
-    alert(error.error.message) )
+    // alert(error.error.message) )
 
 
 
