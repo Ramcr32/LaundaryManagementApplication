@@ -20,7 +20,7 @@ export class UserUpdateComponent {
     this.post.getCustomerById(this.id) .subscribe((data:any)=>{
 
       this.user=data;
-      
+      // console.log(this.user)
     })
 
 
@@ -44,5 +44,6 @@ export class UserUpdateComponent {
       this.post.updateCustomer(this.user).subscribe((result:any)=>{
 
       })
+      this.router.navigate(['user-details'])
   };
 }

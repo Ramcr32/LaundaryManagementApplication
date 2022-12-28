@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
+import { BookingListComponent } from './booking-list/booking-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UserUpdateComponent } from './user-update/user-update.component';
     BookingComponent,
     UserComponent,
     UserTableComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    BookingListComponent
   ],
   imports: [
     BrowserModule,

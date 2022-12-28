@@ -26,7 +26,7 @@ export class UserTableComponent {
   updateService(id:any){
     this.router.navigate(['update-user',id]);
   }
-  viewService(){
-
+  viewService(id:any){
+    this.router.navigate(['booking-list',id]);
   }
 }

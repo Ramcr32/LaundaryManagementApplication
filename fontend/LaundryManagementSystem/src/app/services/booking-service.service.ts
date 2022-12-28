@@ -23,6 +23,9 @@ export class BookingServiceService {
   updateService(data : any){
     return this.http.put(this.url1,data);
   }
+  getServiceDataByCustomerId(id:any){
+    
+  }
 
 }
 
