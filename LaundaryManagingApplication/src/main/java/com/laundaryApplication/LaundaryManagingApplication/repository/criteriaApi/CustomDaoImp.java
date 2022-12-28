@@ -14,7 +14,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional
 public class CustomDaoImp implements  CustomDao{
     @PersistenceContext
     private EntityManager entityManager;
@@ -45,32 +44,11 @@ public class CustomDaoImp implements  CustomDao{
 
     @Override
     public List<ServiceBooking> findAllBookings() {
-        int pageNumber = 1;
-        int pageSize = 2;
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-
-        CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
-        countQuery.select(cb.count(countQuery.from(ServiceBooking.class)));
-        Long count = entityManager.createQuery(countQuery)
-                .getSingleResult();
-
-
         CriteriaQuery<ServiceBooking> cq = cb.createQuery(ServiceBooking.class);
         Root<ServiceBooking> serviceBookingRoot = cq.from(ServiceBooking.class);
         TypedQuery<ServiceBooking> query = entityManager.createQuery(cq);
-//        query.setFirstResult(0);
-//        query.setMaxResults(2);
-
-        while (pageNumber < count.intValue()) {
-            query.setFirstResult(pageNumber - 1);
-            query.setMaxResults(pageSize);
-            System.out.println("Current page: " + query.getResultList());
-            pageNumber += pageSize;
-        }
         return query.getResultList();
-
-
-
     }
 
     @Override
@@ -81,18 +59,21 @@ public class CustomDaoImp implements  CustomDao{
         Predicate p = cb.equal(serviceBookingRoot.get("serviceId"),id);
         criteriaDelete.where(p);
         ServiceBooking query = (ServiceBooking) entityManager.createQuery(criteriaDelete).getSingleResult();
+
         entityManager.createQuery(criteriaDelete).executeUpdate();
+
         return  query;
     }
 
     @Override
-    public List<Customer> getAllEmployees(Query query) {
+    public List<Employee> getAllEmployees(Query query) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Employee> criteriaQuery = cb.createQuery(Employee.class);
         Root<Employee> employeeRoot = criteriaQuery.from(Employee.class);
         Predicate p = cb.equal(employeeRoot.get(query.getTitle()),query.getSearchQuery());
         criteriaQuery.where(p);
-        criteriaQuery.orderBy(cb.asc(query.getSorting()));
+        criteriaQuery.orderBy(cb.asc(employeeRoot.get(query.getSorting())));
+        TypedQuery<Employee> typedQuery = entityManager.createQuery(criteriaQuery);
+        return  typedQuery.getResultList();
     }
-
 }
