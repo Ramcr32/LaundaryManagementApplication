@@ -10,13 +10,22 @@ export class UserTableComponent {
 
   constructor(private userData : PostMethodService){
 
-    this.userData.getUrl().subscribe((data:any)=>{
-
+    this.userData.getCustomer().subscribe((data:any)=>{
       this.users=data;
-
-      console.log(this.users);
-
+      console.warn(this.users)
     })
+
+  }
+  deleteService(id:any){
+    console.log(id)
+    this.userData.deleteCustomer(id).subscribe((data:any)=>{
+        console.warn(data);
+    });
+  }
+  updateService(){
+
+  }
+  viewService(){
 
   }
 }

@@ -1,5 +1,5 @@
-[1:18 PM] Chovaram Sinha
-<p>users</p>
+
+
 <table class="table">
     <thead>
       <tr>
@@ -11,6 +11,9 @@
         <th scope="col">state</th>
         <th scope="col">country</th>
         <th scope="col">pincode</th>
+        <th>update</th>
+        <th>delete</th>
+        <th>view</th>
     </tr>
     </thead>
     <tbody>
@@ -23,6 +26,15 @@
         <td>{{user.address.state}}</td>
         <td>{{user.address.country}}</td>
         <td>{{user.address.pincode}}</td>
+        <td>
+            <button (click)="deleteService(user.userId)">del</button>
+        </td>
+        <td>
+             <button (click)="updateService()">update</button>
+         </td>
+        <td>
+             <button (click)="viewService()">view</button>
+        </td>
     </tr>
      
     </tbody>

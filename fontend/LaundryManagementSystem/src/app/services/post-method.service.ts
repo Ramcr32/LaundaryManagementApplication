@@ -37,6 +37,14 @@ export class PostMethodService {
   logoutAdminData(key : any){
     return this.http.patch(this.url5+"?key="+`${key}`,key);
   }
+
+  url6="http://localhost:8888/customer/"
+  getCustomer(){
+    return this.http.get(this.url6);
+  }
+  deleteCustomer(id:any){
+    return this.http.delete(this.url6+`${id}`)
+  }
 }
 
 

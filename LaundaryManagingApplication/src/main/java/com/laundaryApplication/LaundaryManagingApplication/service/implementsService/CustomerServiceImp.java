@@ -7,6 +7,8 @@ import com.laundaryApplication.LaundaryManagingApplication.service.CustomerServi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerServiceImp implements CustomerService {
     @Autowired
@@ -18,12 +20,22 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public Customer updateCustomer(Customer customer) throws NotFoundException {
-        return null;
+        Customer c = cDao.findById(customer.getUserId())
+                .orElseThrow(()-> new NotFoundException("customer is not present"));
+        return cDao.save(customer);
     }
 
     @Override
     public Customer deleteCustomer(Integer customerId) throws NotFoundException {
-        return null;
+        Customer customer = cDao.findById(customerId)
+                            .orElseThrow(()-> new NotFoundException("customer is not present"));
+        cDao.delete(customer);
+        return customer;
+    }
+
+    @Override
+    public List<Customer> getAll() {
+        return cDao.findAll();
     }
 
     @Override

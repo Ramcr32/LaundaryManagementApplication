@@ -1,11 +1,14 @@
 package com.laundaryApplication.LaundaryManagingApplication.controller;
 
+import com.laundaryApplication.LaundaryManagingApplication.model.Admin;
 import com.laundaryApplication.LaundaryManagingApplication.model.Customer;
 import com.laundaryApplication.LaundaryManagingApplication.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
@@ -28,6 +31,10 @@ public class CustomerController {
         Customer returnCustomer = customerService.deleteCustomer(customerId);
         return  new ResponseEntity<>(returnCustomer, HttpStatus.OK);
     }
-
+    @GetMapping("/")
+    public ResponseEntity<List<Customer>> deleteAdminHandler(){
+        List<Customer> list = customerService.getAll();
+        return  new ResponseEntity<>(list, HttpStatus.OK);
+    }
 
 }
