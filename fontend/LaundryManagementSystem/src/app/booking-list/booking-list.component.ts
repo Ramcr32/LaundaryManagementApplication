@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { BookingServiceService } from '../services/booking-service.service';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-booking-list',
   templateUrl: './booking-list.component.html',
@@ -8,9 +10,10 @@ import { BookingServiceService } from '../services/booking-service.service';
 export class BookingListComponent {
   serviceData:any;
   serviceId:any;
-  constructor(private booking: BookingServiceService){
-    
-        this.booking.getAllServiceData().subscribe((result:any)=>{
+  customerId:any;
+  constructor(private booking: BookingServiceService,private router:Router,private route:ActivatedRoute){
+    this.customerId=this.route.snapshot.params['id'];
+        this.booking.getServiceDataByCustomerId(this.customerId).subscribe((result:any)=>{
           console.log(result)
             this.serviceData=result;
             

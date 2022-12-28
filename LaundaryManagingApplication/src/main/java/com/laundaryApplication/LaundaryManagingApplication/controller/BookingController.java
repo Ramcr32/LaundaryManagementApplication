@@ -62,17 +62,17 @@ public class BookingController {
     @GetMapping("/")
     public ResponseEntity<List<ServiceBooking> > getAllServicesHandler(){
         List<ServiceBooking> services = service.allBookingServices();
-        return new ResponseEntity<>(services, HttpStatus.FOUND);
+        return new ResponseEntity<>(services, HttpStatus.OK);
     }
     @GetMapping("/emps/{empId}")
     public ResponseEntity<List<ServiceBooking> > getAllServicesByEmpIdHandler(@PathVariable Integer empId){
         List<ServiceBooking> services = service.allServicesOfEmp(empId);
-        return new ResponseEntity<>(services, HttpStatus.FOUND);
+        return new ResponseEntity<>(services, HttpStatus.OK);
     }
     @GetMapping("/customers/{customerId}")
     public ResponseEntity<List<ServiceBooking> > getAllServicesByCustomerIdHandler(@PathVariable Integer customerId){
         List<ServiceBooking> services = service.allBookingsOfCustomer(customerId);
-        return new ResponseEntity<>(services, HttpStatus.FOUND);
+        return new ResponseEntity<>(services, HttpStatus.OK);
     }
 
 }
