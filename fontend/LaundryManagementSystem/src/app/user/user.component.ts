@@ -41,6 +41,9 @@ export class UserComponent {
         console.log(result);
         })
     }
+    setTimeout(function(){
+        window.location.href= "http://localhost:4200/user-details";
+     }, 1000);
   }
 
 
