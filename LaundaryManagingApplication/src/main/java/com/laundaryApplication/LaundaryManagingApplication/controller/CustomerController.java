@@ -32,8 +32,13 @@ public class CustomerController {
         return  new ResponseEntity<>(returnCustomer, HttpStatus.OK);
     }
     @GetMapping("/")
-    public ResponseEntity<List<Customer>> deleteAdminHandler(){
+    public ResponseEntity<List<Customer>> getCustomerHandler(){
         List<Customer> list = customerService.getAll();
+        return  new ResponseEntity<>(list, HttpStatus.OK);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Customer> getCustomerHandler(@PathVariable Integer id){
+        Customer list = customerService.getCustomerById(id);
         return  new ResponseEntity<>(list, HttpStatus.OK);
     }
 

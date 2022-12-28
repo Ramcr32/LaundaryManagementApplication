@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PostMethodService } from '../services/post-method.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
@@ -8,7 +9,7 @@ import { PostMethodService } from '../services/post-method.service';
 export class UserTableComponent {
   users : any;
 
-  constructor(private userData : PostMethodService){
+  constructor(private userData : PostMethodService, private router: Router){
 
     this.userData.getCustomer().subscribe((data:any)=>{
       this.users=data;
@@ -22,8 +23,8 @@ export class UserTableComponent {
         console.warn(data);
     });
   }
-  updateService(){
-
+  updateService(id:any){
+    this.router.navigate(['update-user',id]);
   }
   viewService(){
 

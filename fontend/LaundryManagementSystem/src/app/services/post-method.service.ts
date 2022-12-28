@@ -45,6 +45,9 @@ export class PostMethodService {
   deleteCustomer(id:any){
     return this.http.delete(this.url6+`${id}`)
   }
+  getCustomerById(id:any){
+    return this.http.get(this.url6+`${id}`);
+  }
 }
 
 

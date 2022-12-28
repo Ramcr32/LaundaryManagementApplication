@@ -42,4 +42,11 @@ public class CustomerServiceImp implements CustomerService {
     public boolean findCustomerById(Integer customerId) {
         return cDao.existsById(customerId);
     }
+
+    @Override
+    public Customer getCustomerById(Integer customerId) {
+        Customer customer= cDao.findById(customerId)
+                .orElseThrow(()->new NotFoundException("customer is not found"));
+        return customer;
+    }
 }

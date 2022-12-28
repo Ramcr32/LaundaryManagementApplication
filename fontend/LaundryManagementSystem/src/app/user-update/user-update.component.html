@@ -1,0 +1,46 @@
+
+    <div id="container" class = "mt-xl-n5">
+        
+        <div>
+          <select name="select" id="option" #userType (click)="getUser(userType.value)">
+            <option value="none">select</option>
+            <option value="admin">admin</option>
+            <option value="customer">customer</option>
+            <option value="employee">employee</option>
+          </select>
+        </div>
+        <form  #userData="ngForm" (ngSubmit)="getData(userData.value)">
+               <p>user id</p>
+                <input disabled type="text" name="userId" [(ngModel)]="user.userId" />
+                <br>
+              <br>
+                <p>name</p>
+              <input type="text" name="userName" [(ngModel)]="user.userName" />
+              <br>
+                <p>mobile</p>
+              <input type="text" name="mobile" [(ngModel)]="user.mobile" />
+              <br>
+                <p>password</p>
+              <input type="password" name="password" [(ngModel)]="user.password" />
+              <br>
+                <p>email</p>
+              <input type="email" name="email" [(ngModel)]="user.email" />
+              <br>
+                <p>city</p>
+              <input type="text" name="city" [(ngModel)]="address.city" />
+              <br>
+                <p>state</p>
+              <input type="text" name="state" [(ngModel)]="address.state" />
+              <br>
+                <p>pincode</p>
+              <input type="text" name="pincode" [(ngModel)]="address.pincode" />
+              <br>
+                <p>country</p>
+              <input type="text" name="country" [(ngModel)]="address.country" />
+              <br>
+              <input type="submit" value="update">
+        </form>
+         
+    </div>
+
+
