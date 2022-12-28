@@ -8,6 +8,6 @@ import java.util.List;
 @Entity
 @PrimaryKeyJoinColumn(name="customerId")
 public class Customer extends User{
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ServiceBooking> serviceBookings;
 }

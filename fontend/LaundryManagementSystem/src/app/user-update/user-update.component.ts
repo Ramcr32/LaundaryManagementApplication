@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import { PostMethodService } from '../services/post-method.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../util/user';
+import { Address } from '../util/address';
 @Component({
   selector: 'app-user-update',
   templateUrl: './user-update.component.html',
   styleUrls: ['./user-update.component.css']
 })
 export class UserUpdateComponent {
-  user:any;
+  user:User= new User();
 
   id:any;
   ngOnInit():void{
@@ -18,7 +20,7 @@ export class UserUpdateComponent {
     this.post.getCustomerById(this.id) .subscribe((data:any)=>{
 
       this.user=data;
-
+      
     })
 
 
@@ -31,22 +33,16 @@ export class UserUpdateComponent {
 
 
   onUpdate(data:any){
+      this.user.userName=data.userName;
+      this.user.mobile=data.mobile;
+      this.user.email=data.email;
+      this.user.address.city=data.city;
+      this.user.address.country=data.country;
+      this.user.address.state=data.state;
+      this.user.address.pincode=data.pincode
+      // console.log(this.user)
+      this.post.updateCustomer(this.user).subscribe((result:any)=>{
 
-    //console.log(this.employee);
-
-    // console.log(this.employee);
-
-    // this.employeeService.updateEmployee(this.id,this.employee).subscribe(data=>{
-
-    //   console.log(data);
-
-    //   this.goToEmployeeList();
-
-    // },error=>
-
-    // alert(error.error.message) )
-
-
-
+      })
   };
 }

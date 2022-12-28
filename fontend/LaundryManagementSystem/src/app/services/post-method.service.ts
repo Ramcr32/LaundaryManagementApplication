@@ -48,6 +48,9 @@ export class PostMethodService {
   getCustomerById(id:any){
     return this.http.get(this.url6+`${id}`);
   }
+  updateCustomer(data : any){
+        return this.http.put(this.url6,data);
+  }
 }
 
 
