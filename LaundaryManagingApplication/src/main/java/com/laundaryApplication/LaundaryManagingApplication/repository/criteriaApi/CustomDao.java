@@ -13,7 +13,7 @@ public interface CustomDao {
     public List<ServiceBooking> findAllByCustomerId(Integer customerId);
 
     public  List<ServiceBooking> findAllBookings();
-    public  ServiceBooking BookingdeleteById(Integer id);
+    public  Integer BookingdeleteById(Integer id);
     public List<Employee> getAllEmployees(Query query);
 
 }

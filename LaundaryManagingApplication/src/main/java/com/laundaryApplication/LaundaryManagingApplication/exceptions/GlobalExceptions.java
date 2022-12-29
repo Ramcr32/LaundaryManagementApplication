@@ -9,7 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
 
-//@RestControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptions {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<MyErrorDetails> myExpHandler1(NotFoundException ie,WebRequest wr)
@@ -19,14 +19,14 @@ public class GlobalExceptions {
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<MyErrorDetails> myExpHandler3(MethodArgumentNotValidException me) {
-        MyErrorDetails err=new MyErrorDetails(LocalDateTime.now(),"Validation Error",me.getBindingResult().getFieldError().getDefaultMessage());
+        MyErrorDetails err=new MyErrorDetails(LocalDateTime.now(),"Handler Exceptions",me.getBindingResult().getFieldError().getDefaultMessage());
         return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<MyErrorDetails> myExpHandler(Exception e, WebRequest wr)
     {
-        MyErrorDetails err= new MyErrorDetails( LocalDateTime.now(),"Validation Error",wr.getDescription(false));
+        MyErrorDetails err= new MyErrorDetails( LocalDateTime.now(),"Exceptions are not reconized",wr.getDescription(false));
         return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
 
     }

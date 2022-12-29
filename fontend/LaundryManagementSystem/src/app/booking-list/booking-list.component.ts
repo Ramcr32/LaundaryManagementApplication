@@ -22,10 +22,13 @@ export class BookingListComponent {
            
         })
   }
+  newBooking(){
+
+    this.router.navigate(['service-booking',this.customerId])
+  }
 
   editService(data: any){
-        console.log(data)
-        data.price=data.piece*10;
+        
         this.booking.updateService(data);
         setTimeout(function(){
           window.location.reload();
@@ -37,6 +40,9 @@ export class BookingListComponent {
         this.booking.deleteService(this.serviceId).subscribe((result:any)=>{
           // console.log(result);
         })
-        window.location.reload();
+    setTimeout(function(){
+          window.location.reload();
+        },1000)
+        
       }
 }

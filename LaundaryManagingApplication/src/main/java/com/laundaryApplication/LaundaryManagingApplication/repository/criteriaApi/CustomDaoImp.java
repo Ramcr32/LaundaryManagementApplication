@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public class CustomDaoImp implements  CustomDao{
     @PersistenceContext
     private EntityManager entityManager;
@@ -52,17 +53,17 @@ public class CustomDaoImp implements  CustomDao{
     }
 
     @Override
-    public ServiceBooking BookingdeleteById(Integer id) {
+    public Integer BookingdeleteById(Integer id) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaDelete<ServiceBooking> criteriaDelete = cb.createCriteriaDelete(ServiceBooking.class);
         Root<ServiceBooking> serviceBookingRoot = criteriaDelete.from(ServiceBooking.class);
         Predicate p = cb.equal(serviceBookingRoot.get("serviceId"),id);
         criteriaDelete.where(p);
-        ServiceBooking query = (ServiceBooking) entityManager.createQuery(criteriaDelete).getSingleResult();
+//        ServiceBooking query = (ServiceBooking) entityManager.createQuery(criteriaDelete).getSingleResult();
 
-        entityManager.createQuery(criteriaDelete).executeUpdate();
 
-        return  query;
+
+        return  entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
     @Override
