@@ -20,13 +20,29 @@ export class UserTableComponent {
     })
 
   }
-  sSCustomers(text:any){
-      this.query.searchQuery=text
-    // this.query.pageSize=2;
-    // this.userData.getSearchCustomer(this.query).subscribe((data:any)=>{
-    //   this.users=data;
-    //   // console.warn(this.users)
-    // })
+  sSCustomers(){
+    this.query.pageNumber=1;
+    this.query.pageSize=2;
+    console.log(this.query)
+    this.userData.getSearchCustomer(this.query).subscribe((data:any)=>{
+      this.users=data;
+      console.warn(this.users)
+    })
+  }
+  sSearch(text:any){
+    this.query.searchQuery=text;
+    this.sSCustomers();
+  }
+  sSorting(text:any){
+    this.query.sorting=text;
+    this.sSCustomers();
+  }
+  sTitle(text:any){
+    this.query.title=text;
+    this.sSCustomers();
+  }
+  sPage(event:any){
+      console.log(event)
   }
   deleteService(id:any){
     console.log(id)

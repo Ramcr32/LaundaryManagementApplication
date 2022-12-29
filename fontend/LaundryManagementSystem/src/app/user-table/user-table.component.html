@@ -1,22 +1,22 @@
 <div class="d-flex flex-column">
         <div class="d-flex flex-row">
-                <div><input type="text" placeholder="search" #searchValue (keyup)="sSCustomers(searchValue.value)" /></div>
+                <div><input type="text" placeholder="search" #searchValue (keyup)="sSearch(searchValue.value)" /></div>
                 <div>
-                        <select #titleValue (select)="sTitle(titleValue.value)"  >
-                                <option value="title">title</option>
-                                <option value="">id</option>
-                                <option value="">name</option>
-                                <option value="">mobile</option>
-                                <option value="">email</option>
+                        <select #titleValue (click)="sTitle(titleValue.value)"  >
+                                <option disabled value="title">title</option>
+                                <option value="userId">id</option>
+                                <option value="userName">name</option>
+                                <option value="mobile">mobile</option>
+                                <option value="email">email</option>
                         </select>
                 </div>
                 <div>
-                        <select #sortingValue (select)="sTitle(sortingValue.value)">
-                                <option value="title">sorting</option>
-                                <option value="">id</option>
-                                <option value="">name</option>
-                                <option value="">mobile</option>
-                                <option value="">email</option>
+                        <select #sortingValue (click)="sSorting(sortingValue.value)">
+                                <option disabled value="title">sorting</option>
+                                <option value="userId">id</option>
+                                <option value="userName">name</option>
+                                <option value="mobile">mobile</option>
+                                <option value="email">email</option>
                         </select>
                 </div>
                 <div></div>
@@ -70,16 +70,16 @@
                         <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                         <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
+                                                <a class="page-link"  aria-label="Previous">
                                                         <span aria-hidden="true">&laquo;</span>
-                                                        <span class="sr-only">Previous</span>
+                                                        <span class="sr-only" >Previous</span>
                                                 </a>
                                         </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"  ><a class="page-link" (click)="sPage(a.innerText)" #a >1</a></li>
+                                        <li class="page-item"><a class="page-link" (click)="sPage(b.innerText)" #b >2</a></li>
+                                        <li class="page-item"><a class="page-link" (click)="sPage(c.innerText)" #c >3</a></li>
                                         <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
+                                                <a class="page-link"  aria-label="Next">
                                                         <span aria-hidden="true">&raquo;</span>
                                                         <span class="sr-only">Next</span>
                                                 </a>
