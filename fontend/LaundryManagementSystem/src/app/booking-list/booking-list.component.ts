@@ -9,40 +9,37 @@ import { DataTransferService } from '../services/data-transfer.service';
   styleUrls: ['./booking-list.component.css']
 })
 export class BookingListComponent {
-  serviceData:any;
-  serviceId:any;
-  customerId:any;
-  constructor(private booking: BookingServiceService,private router:Router,private route:ActivatedRoute,private dtxr: DataTransferService){
+  serviceData: any;
+  serviceId: any;
+  customerId: any;
+  constructor(private booking: BookingServiceService, private router: Router, private route: ActivatedRoute, private dtxr: DataTransferService) {
     dtxr.updateApprovalMessage(true);
-    this.customerId=this.route.snapshot.params['id'];
-        this.booking.getServiceDataByCustomerId(this.customerId).subscribe((result:any)=>{
-          console.log(result)
-            this.serviceData=result;
-            
-           
-        })
-  }
-  newBooking(){
+    this.customerId = this.route.snapshot.params['id'];
+    this.booking.getServiceDataByCustomerId(this.customerId).subscribe((result: any) => {
+      console.log(result)
+      this.serviceData = result;
 
-    this.router.navigate(['service-booking',this.customerId])
+
+    })
+  }
+  newBooking() {
+
+    this.router.navigate(['service-booking', this.customerId])
   }
 
-  editService(data: any){
-        
-        this.booking.updateService(data);
-        setTimeout(function(){
-          window.location.reload();
-       }, 1000);
-      }
-      deleteService(id : number){
-        this.serviceId=id;
-        console.log(id);
-        this.booking.deleteService(this.serviceId).subscribe((result:any)=>{
-          // console.log(result);
-        })
-    setTimeout(function(){
-          window.location.reload();
-        },1000)
-        
-      }
+  editService(data: any) {
+
+
+  }
+  deleteService(id: number) {
+    this.serviceId = id;
+    console.log(id);
+    this.booking.deleteService(this.serviceId).subscribe((result: any) => {
+      // console.log(result);
+    })
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000)
+
+  }
 }

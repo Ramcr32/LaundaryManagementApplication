@@ -1,38 +1,39 @@
 <div style="border: 1px solid green;">
       <p class="text-center">details</p>
       <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">s.no</th>
-            <th scope="col">service id</th>
-            <th scope="col">customer id</th>
-            <th scope="col">employee id</th>
-            <th scope="col">date</th>
-            <th scope="col">piece</th>
-            <th scope="col">price</th>
-            <th scope="col">edit</th>
-            <th scope="col">delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor ="let s of serviceData,index as i">
-            <td >{{i}}</td>
-            <td>{{s.serviceId}}</td>
-            <td>{{s.customerId}}</td>
-            <td>{{s.empId}}</td>
-            <td>{{s.bookingDate}}</td>
-            <td>{{s.piece}}</td>
-            <td>{{s.price}}</td>
-            <td>
-              <button (click)="editService(s.serviceId)">edit</button>
-            </td>
-            <td>
-              <button (click)="deleteService(s.serviceId)">del</button>
-            </td>
-          </tr>
-         <button (click)="newBooking()">add</button>
-         
-        </tbody>
-        
-      </table>
-    </div>
+            <thead>
+                  <tr>
+                        <th scope="col">s.no</th>
+                        <th scope="col">service id</th>
+                        <th scope="col">customer id</th>
+                        <th scope="col">employee id</th>
+                        <th scope="col">date</th>
+                        <th scope="col">piece</th>
+                        <th scope="col">price</th>
+                        <th scope="col">edit</th>
+                        <th scope="col">delete</th>
+                      </tr>
+                </thead>
+            <tbody>
+                  <tr *ngFor="let s of serviceData,index as i">
+                        <td>{{i}}</td>
+                        <td>{{s.serviceId}}</td>
+                        <td>{{s.customerId}}</td>
+                        <td>{{s.empId}}</td>
+                        <td>{{s.bookingDate}}</td>
+                <td>{{s.piece}}</td>
+                        <td>{{s.price}}</td>
+                        <td>
+                              <button (click)="editService(s.serviceId)">edit</button>
+                            </td>
+                        <td>
+                              <button (click)="deleteService(s.serviceId)">del</button>
+                            </td>
+                     
+            </tr>
+                 <button (click)="newBooking()">add</button>
+                 
+                </tbody>
+
+          </table>
+</div>
