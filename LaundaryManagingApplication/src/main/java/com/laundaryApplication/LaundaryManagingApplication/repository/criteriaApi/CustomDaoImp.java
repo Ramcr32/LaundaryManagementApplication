@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -80,12 +81,22 @@ public class CustomDaoImp implements  CustomDao{
 
     @Override
     public List<Customer> getAllCustomers(Query query) {
+
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Customer> criteriaQuery = cb.createQuery(Customer.class);
         Root<Customer> customerRoot = criteriaQuery.from(Customer.class);
-        Predicate p = cb.like(customerRoot.get(query.getTitle()),"%"+query.getSearchQuery()+"%");
-        criteriaQuery.where(p);
-        criteriaQuery.orderBy(cb.asc(customerRoot.get(query.getSorting())));
+        List<Predicate> predicateList = new ArrayList<>();
+        if(!query.getTitle().equalsIgnoreCase("none") 
+
+          ){
+            predicateList.add(cb.like(customerRoot.get(query.getTitle()),"%"+query.getSearchQuery()+"%"));
+        }
+
+        criteriaQuery.where(predicateList.toArray(new Predicate[0]));
+        if(!query.getSorting().equalsIgnoreCase("none")){
+            criteriaQuery.orderBy(cb.asc(customerRoot.get(query.getSorting())));
+        }
+
         TypedQuery<Customer> typedQuery = entityManager.createQuery(criteriaQuery);
         typedQuery.setFirstResult( (query.getPageNumber().intValue()-1)*query.getPageSize().intValue());
         typedQuery.setMaxResults(query.getPageSize().intValue());

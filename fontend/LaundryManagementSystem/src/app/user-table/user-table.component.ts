@@ -11,7 +11,7 @@ import { Query } from '../services/query';
 export class UserTableComponent {
   users : any;
   query:Query=new Query();
-  
+  flag:boolean=false;
   constructor(private userData : PostMethodService, private router: Router, private dtxr: DataTransferService){
     this.dtxr.updateApprovalMessage(true);
     this.userData.getCustomer().subscribe((data:any)=>{
@@ -44,7 +44,7 @@ export class UserTableComponent {
   sPage(event:any){
       console.log(event)
       if(event == "Next"){
-        console.log("sadf")
+       
         this.query.pageNumber=this.query.pageNumber+1
       }
       else if(event == "Previous"){
