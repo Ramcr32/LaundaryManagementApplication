@@ -77,4 +77,18 @@ public class CustomDaoImp implements  CustomDao{
         TypedQuery<Employee> typedQuery = entityManager.createQuery(criteriaQuery);
         return  typedQuery.getResultList();
     }
+
+    @Override
+    public List<Customer> getAllCustomers(Query query) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Customer> criteriaQuery = cb.createQuery(Customer.class);
+        Root<Customer> customerRoot = criteriaQuery.from(Customer.class);
+        Predicate p = cb.like(customerRoot.get(query.getTitle()),"%"+query.getSearchQuery()+"%");
+        criteriaQuery.where(p);
+        criteriaQuery.orderBy(cb.asc(customerRoot.get(query.getSorting())));
+        TypedQuery<Customer> typedQuery = entityManager.createQuery(criteriaQuery);
+        typedQuery.setFirstResult( query.getPageNumber().intValue());
+        typedQuery.setMaxResults(query.getPageSize().intValue());
+        return  typedQuery.getResultList();
+    }
 }

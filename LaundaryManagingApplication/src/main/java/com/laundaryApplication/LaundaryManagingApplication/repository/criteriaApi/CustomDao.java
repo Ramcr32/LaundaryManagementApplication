@@ -15,5 +15,5 @@ public interface CustomDao {
     public  List<ServiceBooking> findAllBookings();
     public  Integer BookingdeleteById(Integer id);
     public List<Employee> getAllEmployees(Query query);
-
+    public List<Customer> getAllCustomers(Query query);
 }

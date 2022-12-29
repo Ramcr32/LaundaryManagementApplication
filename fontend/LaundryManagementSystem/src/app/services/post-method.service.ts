@@ -51,6 +51,9 @@ export class PostMethodService {
   updateCustomer(data : any){
         return this.http.put(this.url6,data);
   }
+  getSearchCustomer(data:any){
+    return this.http.post(this.url6+"search/",data);
+  }
 }
 
 
