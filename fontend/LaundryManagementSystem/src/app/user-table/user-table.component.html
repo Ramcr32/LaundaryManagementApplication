@@ -1,45 +1,95 @@
+<div class="d-flex flex-column">
+        <div class="d-flex flex-row">
+                <div><input type="text" placeholder="search" #searchValue (keyup)="sSCustomers(searchValue.value)" /></div>
+                <div>
+                        <select #titleValue (select)="sTitle(titleValue.value)"  >
+                                <option value="title">title</option>
+                                <option value="">id</option>
+                                <option value="">name</option>
+                                <option value="">mobile</option>
+                                <option value="">email</option>
+                        </select>
+                </div>
+                <div>
+                        <select #sortingValue (select)="sTitle(sortingValue.value)">
+                                <option value="title">sorting</option>
+                                <option value="">id</option>
+                                <option value="">name</option>
+                                <option value="">mobile</option>
+                                <option value="">email</option>
+                        </select>
+                </div>
+                <div></div>
 
-
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">name</th>
-        <th scope="col">mobile</th>
-        <th scope="col">email</th>
-        <th scope="col">city</th>
-        <th scope="col">state</th>
-        <th scope="col">country</th>
-        <th scope="col">pincode</th>
-        <th>update</th>
-        <th>delete</th>
-        <th>view</th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor ="let user of users" >
-        <th scope="row">{{user.userId}}</th>
-        <td>{{user.userName}}</td>
-        <td>{{user.mobile}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.address.city}}</td>
-        <td>{{user.address.state}}</td>
-        <td>{{user.address.country}}</td>
-        <td>{{user.address.pincode}}</td>
-        <td>
-            <button (click)="deleteService(user.userId)">del</button>
-        </td>
-        <td>
-             <button (click)="updateService(user.userId)" >update</button>
-         </td>
-        <td>
-             <button (click)="viewService(user.userId)">view</button>
-        </td>
-    </tr>
-     
-    </tbody>
-        <a class="btn btn-primary" routerLink="register-user" routerLinkActive="active" role="button">Add</a>
-  </table>
-
-
-
+        </div>
+        <div >
+                <table class="table"  >
+                            <thead>
+                                      <tr>
+                                                <th scope="col">id</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">mobile</th>
+                                                <th scope="col">email</th>
+                                                <th scope="col">city</th>
+                                                <th scope="col">state</th>
+                                                <th scope="col">country</th>
+                                                <th scope="col">pincode</th>
+                                        <th>update</th>
+                                        <th>delete</th>
+                                        <th>view</th>
+                                           
+                                </tr>
+                                    </thead>
+                            <tbody>
+                                      <tr *ngFor="let user of users">
+                                                <th scope="row">{{user.userId}}</th>
+                                                <td>{{user.userName}}</td>
+                                                <td>{{user.mobile}}</td>
+                                                <td>{{user.email}}</td>
+                                                <td>{{user.address.city}}</td>
+                                                <td>{{user.address.state}}</td>
+                                                <td>{{user.address.country}}</td>
+                                                <td>{{user.address.pincode}}</td>
+                                        <td>
+                                                        <button (click)="deleteService(user.userId)">del</button>
+                                                    </td>
+                                        <td>
+                                                     <button (click)="updateService(user.userId)">update</button>
+                                                 </td>
+                                        <td>
+                                                 <button (click)="viewService(user.userId)">view</button>
+                                        </td>
+                                           
+                                </tr>
+                                     
+                                    </tbody>
+                        
+                         
+                </table>
+                <div>
+                        <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                        <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                </a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                </a>
+                                        </li>
+                                </ul>
+                        </nav>
+                </div>
+                <div>
+                        <a class="btn btn-primary" routerLink="register-user" routerLinkActive="active"
+                                role="button">Add</a>
+                </div>
+        </div>
+</div>
