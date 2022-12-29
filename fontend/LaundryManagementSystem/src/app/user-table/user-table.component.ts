@@ -43,6 +43,22 @@ export class UserTableComponent {
   }
   sPage(event:any){
       console.log(event)
+      if(event == "Next"){
+        console.log("sadf")
+        this.query.pageNumber=this.query.pageNumber+1
+      }
+      else if(event == "Previous"){
+        this.query.pageNumber=this.query.pageNumber-1
+      }
+      else {
+        
+        this.query.pageNumber=event
+      }
+      
+    this.userData.getSearchCustomer(this.query).subscribe((data:any)=>{
+      this.users=data;
+      console.warn(this.users)
+    })
   }
   deleteService(id:any){
     console.log(id)

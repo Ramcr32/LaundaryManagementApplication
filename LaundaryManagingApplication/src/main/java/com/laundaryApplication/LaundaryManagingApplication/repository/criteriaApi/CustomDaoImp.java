@@ -87,7 +87,7 @@ public class CustomDaoImp implements  CustomDao{
         criteriaQuery.where(p);
         criteriaQuery.orderBy(cb.asc(customerRoot.get(query.getSorting())));
         TypedQuery<Customer> typedQuery = entityManager.createQuery(criteriaQuery);
-        typedQuery.setFirstResult( query.getPageNumber().intValue());
+        typedQuery.setFirstResult( (query.getPageNumber().intValue()-1)*query.getPageSize().intValue());
         typedQuery.setMaxResults(query.getPageSize().intValue());
         return  typedQuery.getResultList();
     }

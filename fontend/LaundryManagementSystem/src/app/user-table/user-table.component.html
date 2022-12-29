@@ -3,7 +3,7 @@
                 <div><input type="text" placeholder="search" #searchValue (keyup)="sSearch(searchValue.value)" /></div>
                 <div>
                         <select #titleValue (click)="sTitle(titleValue.value)"  >
-                                <option disabled value="title">title</option>
+                                <option  value="none">title</option>
                                 <option value="userId">id</option>
                                 <option value="userName">name</option>
                                 <option value="mobile">mobile</option>
@@ -12,7 +12,7 @@
                 </div>
                 <div>
                         <select #sortingValue (click)="sSorting(sortingValue.value)">
-                                <option disabled value="title">sorting</option>
+                                <option value="none">sorting</option>
                                 <option value="userId">id</option>
                                 <option value="userName">name</option>
                                 <option value="mobile">mobile</option>
@@ -72,7 +72,7 @@
                                         <li class="page-item">
                                                 <a class="page-link"  aria-label="Previous">
                                                         <span aria-hidden="true">&laquo;</span>
-                                                        <span class="sr-only" >Previous</span>
+                                                        <span class="sr-only"(click)="sPage(previous.innerText)" #previous >Previous</span>
                                                 </a>
                                         </li>
                                         <li class="page-item"  ><a class="page-link" (click)="sPage(a.innerText)" #a >1</a></li>
@@ -81,7 +81,7 @@
                                         <li class="page-item">
                                                 <a class="page-link"  aria-label="Next">
                                                         <span aria-hidden="true">&raquo;</span>
-                                                        <span class="sr-only">Next</span>
+                                                        <span class="sr-only" (click)="sPage(next.innerText)" #next>Next</span>
                                                 </a>
                                         </li>
                                 </ul>
