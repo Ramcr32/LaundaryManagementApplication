@@ -3,6 +3,7 @@ package com.laundaryApplication.LaundaryManagingApplication.repository.criteriaA
 import com.laundaryApplication.LaundaryManagingApplication.model.Customer;
 import com.laundaryApplication.LaundaryManagingApplication.model.Employee;
 import com.laundaryApplication.LaundaryManagingApplication.model.ServiceBooking;
+import com.laundaryApplication.LaundaryManagingApplication.util.Page;
 import com.laundaryApplication.LaundaryManagingApplication.util.Query;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface CustomDao {
     public  List<ServiceBooking> findAllBookings();
     public  Integer BookingdeleteById(Integer id);
     public List<Employee> getAllEmployees(Query query);
-    public List<Customer> getAllCustomers(Query query);
+    public Page getAllCustomers(Query query);
 }

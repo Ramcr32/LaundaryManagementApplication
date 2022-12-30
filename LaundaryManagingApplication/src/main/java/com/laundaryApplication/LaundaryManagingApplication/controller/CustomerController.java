@@ -3,6 +3,7 @@ package com.laundaryApplication.LaundaryManagingApplication.controller;
 import com.laundaryApplication.LaundaryManagingApplication.model.Admin;
 import com.laundaryApplication.LaundaryManagingApplication.model.Customer;
 import com.laundaryApplication.LaundaryManagingApplication.service.CustomerService;
+import com.laundaryApplication.LaundaryManagingApplication.util.Page;
 import com.laundaryApplication.LaundaryManagingApplication.util.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,8 +39,8 @@ public class CustomerController {
         return  new ResponseEntity<>(list, HttpStatus.OK);
     }
     @PostMapping("/search/")
-    public ResponseEntity<List<Customer>> getCustomerHandler(@RequestBody Query query){
-        List<Customer> list = customerService.getAll(query);
+    public ResponseEntity<Page> getCustomerHandler(@RequestBody Query query){
+        Page list = customerService.getAll(query);
         return  new ResponseEntity<>(list, HttpStatus.OK);
     }
     @GetMapping("/{id}")

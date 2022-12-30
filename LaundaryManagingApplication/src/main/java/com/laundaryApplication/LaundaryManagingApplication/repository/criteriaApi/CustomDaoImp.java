@@ -3,6 +3,7 @@ package com.laundaryApplication.LaundaryManagingApplication.repository.criteriaA
 import com.laundaryApplication.LaundaryManagingApplication.model.Customer;
 import com.laundaryApplication.LaundaryManagingApplication.model.Employee;
 import com.laundaryApplication.LaundaryManagingApplication.model.ServiceBooking;
+import com.laundaryApplication.LaundaryManagingApplication.util.Page;
 import com.laundaryApplication.LaundaryManagingApplication.util.Query;
 import org.springframework.stereotype.Repository;
 
@@ -80,14 +81,14 @@ public class CustomDaoImp implements  CustomDao{
     }
 
     @Override
-    public List<Customer> getAllCustomers(Query query) {
+    public Page getAllCustomers(Query query) {
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Customer> criteriaQuery = cb.createQuery(Customer.class);
         Root<Customer> customerRoot = criteriaQuery.from(Customer.class);
         List<Predicate> predicateList = new ArrayList<>();
-        if(!query.getTitle().equalsIgnoreCase("none") 
-
+        if(!query.getTitle().equalsIgnoreCase("none")
+                && !query.getSearchQuery().equals("")
           ){
             predicateList.add(cb.like(customerRoot.get(query.getTitle()),"%"+query.getSearchQuery()+"%"));
         }
@@ -98,8 +99,12 @@ public class CustomDaoImp implements  CustomDao{
         }
 
         TypedQuery<Customer> typedQuery = entityManager.createQuery(criteriaQuery);
-        typedQuery.setFirstResult( (query.getPageNumber().intValue()-1)*query.getPageSize().intValue());
+        List<Customer> list = typedQuery.getResultList();
+        if(query.getPageNumber().intValue()>0  ){
+            typedQuery.setFirstResult( (query.getPageNumber().intValue()-1)*query.getPageSize().intValue());
+        }
+
         typedQuery.setMaxResults(query.getPageSize().intValue());
-        return  typedQuery.getResultList();
+        return  new Page(typedQuery.getResultList(), list.size());
     }
 }

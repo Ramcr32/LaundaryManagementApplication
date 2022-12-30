@@ -12,25 +12,29 @@ export class UserTableComponent {
   users : any;
   query:Query=new Query();
   flag:boolean=false;
+  count:any;
   constructor(private userData : PostMethodService, private router: Router, private dtxr: DataTransferService){
     this.dtxr.updateApprovalMessage(true);
-    this.userData.getCustomer().subscribe((data:any)=>{
-      this.users=data;
-      console.warn(this.users)
-    })
+    
+    this.sSCustomers()
 
   }
   sSCustomers(){
-    this.query.pageNumber=1;
-    this.query.pageSize=2;
+    
     console.log(this.query)
     this.userData.getSearchCustomer(this.query).subscribe((data:any)=>{
-      this.users=data;
-      console.warn(this.users)
+      this.users=data.content;
+      this.count= data.count;
+      
     })
   }
+  
   sSearch(text:any){
     this.query.searchQuery=text;
+    this.sSCustomers();
+  }
+  pageSize(text:any){
+    this.query.pageSize=text;
     this.sSCustomers();
   }
   sSorting(text:any){
@@ -44,21 +48,27 @@ export class UserTableComponent {
   sPage(event:any){
       console.log(event)
       if(event == "Next"){
-       
-        this.query.pageNumber=this.query.pageNumber+1
+       console.log(this.count)
+          var c = this.count/this.query.pageSize
+          
+        if(this.query.pageNumber<=c){
+          this.query.pageNumber=this.query.pageNumber+1
+        }
+        
+        
       }
       else if(event == "Previous"){
-        this.query.pageNumber=this.query.pageNumber-1
+        if(this.query.pageNumber>=1){
+          this.query.pageNumber=this.query.pageNumber-1
+        }
+        
       }
       else {
         
         this.query.pageNumber=event
       }
-      
-    this.userData.getSearchCustomer(this.query).subscribe((data:any)=>{
-      this.users=data;
-      console.warn(this.users)
-    })
+      this.sSCustomers();
+    
   }
   deleteService(id:any){
     console.log(id)

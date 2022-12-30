@@ -2,8 +2,8 @@
         <div class="d-flex flex-row">
                 <div><input type="text" placeholder="search" #searchValue (keyup)="sSearch(searchValue.value)" /></div>
                 <div>
-                        <select #titleValue (click)="sTitle(titleValue.value)"  >
-                                <option  value="none">title</option>
+                        <select #titleValue (click)="sTitle(titleValue.value)">
+                                <option value="userName">title</option>
                                 <option value="userId">id</option>
                                 <option value="userName">name</option>
                                 <option value="mobile">mobile</option>
@@ -12,7 +12,7 @@
                 </div>
                 <div>
                         <select #sortingValue (click)="sSorting(sortingValue.value)">
-                                <option value="none">sorting</option>
+                                <option value="userId">sorting</option>
                                 <option value="userId">id</option>
                                 <option value="userName">name</option>
                                 <option value="mobile">mobile</option>
@@ -22,8 +22,8 @@
                 <div></div>
 
         </div>
-        <div >
-                <table class="table"  >
+        <div>
+                <table class="table">
                             <thead>
                                       <tr>
                                                 <th scope="col">id</th>
@@ -63,25 +63,34 @@
                                 </tr>
                                      
                                     </tbody>
-                        
+
                          
                 </table>
+                <div class="form-outline" style="width: 5rem;">
+                        <span>size</span><input min="1" max="20" type="number" #pSizeNumber (keyup)="pageSize(pSizeNumber.value)" id="typeNumber" class="form-control"  />
+                        
+                </div>
                 <div>
                         <nav aria-label="Page navigation example">
                                 <ul class="pagination">
-                                        <li class="page-item" >
-                                                <a class="page-link"  aria-label="Previous">
+                                        <li class="page-item">
+                                                <a class="page-link" aria-label="Previous">
                                                         <span aria-hidden="true">&laquo;</span>
-                                                        <span class="sr-only"(click)="sPage(previous.innerText)" #previous >Previous</span>
+                                                        <span class="sr-only" (click)="sPage(previous.innerText)"
+                                                                #previous>Previous</span>
                                                 </a>
                                         </li>
-                                        <li class="page-item"  ><a class="page-link" (click)="sPage(a.innerText)" #a >1</a></li>
-                                        <li class="page-item"><a class="page-link" (click)="sPage(b.innerText)" #b >2</a></li>
-                                        <li class="page-item"><a class="page-link" (click)="sPage(c.innerText)" #c >3</a></li>
+                                        <li class="page-item"><a class="page-link" (click)="sPage(a.innerText)" #a>1</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" (click)="sPage(b.innerText)" #b>2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" (click)="sPage(c.innerText)" #c>3</a>
+                                        </li>
                                         <li class="page-item">
-                                                <a class="page-link"  aria-label="Next">
+                                                <a class="page-link" aria-label="Next">
                                                         <span aria-hidden="true">&raquo;</span>
-                                                        <span class="sr-only" (click)="sPage(next.innerText)" #next>Next</span>
+                                                        <span class="sr-only" (click)="sPage(next.innerText)"
+                                                                #next>Next</span>
                                                 </a>
                                         </li>
                                 </ul>

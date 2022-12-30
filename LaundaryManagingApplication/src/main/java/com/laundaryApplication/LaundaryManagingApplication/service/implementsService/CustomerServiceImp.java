@@ -5,6 +5,7 @@ import com.laundaryApplication.LaundaryManagingApplication.model.Customer;
 import com.laundaryApplication.LaundaryManagingApplication.repository.CustomerDao;
 import com.laundaryApplication.LaundaryManagingApplication.repository.criteriaApi.CustomDao;
 import com.laundaryApplication.LaundaryManagingApplication.service.CustomerService;
+import com.laundaryApplication.LaundaryManagingApplication.util.Page;
 import com.laundaryApplication.LaundaryManagingApplication.util.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public List<Customer> getAll(Query query) {
+    public Page getAll(Query query) {
         return customDao.getAllCustomers(query);
     }
 
