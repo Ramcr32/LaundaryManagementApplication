@@ -16,7 +16,7 @@ export class BookingListComponent {
     dtxr.updateApprovalMessage(true);
     this.customerId = this.route.snapshot.params['id'];
     this.booking.getServiceDataByCustomerId(this.customerId).subscribe((result: any) => {
-      console.log(result)
+      // console.log(result)
       this.serviceData = result;
 
 
@@ -28,7 +28,7 @@ export class BookingListComponent {
   }
 
   editService(data: any) {
-
+    this.router.navigate(['service-booking', data])
 
   }
   deleteService(id: number) {

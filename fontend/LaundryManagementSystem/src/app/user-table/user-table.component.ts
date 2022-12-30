@@ -21,7 +21,7 @@ export class UserTableComponent {
   }
   sSCustomers(){
     
-    console.log(this.query)
+    // console.log(this.query)
     this.userData.getSearchCustomer(this.query).subscribe((data:any)=>{
       this.users=data.content;
       this.count= data.count;

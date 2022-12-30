@@ -22,7 +22,7 @@ export class LoginComponent {
 
     loginCheck(data: any) {
 
-        console.log(data)
+        // console.log(data)
         this.post.loginAdminData(data).subscribe((result: any) => {
             // console.log(result.message);
             this.msg = result.message;
@@ -30,7 +30,7 @@ export class LoginComponent {
 
         }, err => {
             this.errMessage = err.error.message;
-            console.log(this.errMessage)
+            // console.log(this.errMessage)
         })
         if (this.msg != "") {
             this.datatxr.updateApprovalMessage(true);
