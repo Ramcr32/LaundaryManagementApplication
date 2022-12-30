@@ -35,7 +35,10 @@ export class UserTableComponent {
   }
   pageSize(text:any){
     this.query.pageSize= parseInt(text) ;
-    this.sSCustomers();
+    if(!isNaN(this.query.pageSize)){
+      this.sSCustomers();
+    }
+    
   }
   sSorting(text:any){
     this.query.sorting=text;
