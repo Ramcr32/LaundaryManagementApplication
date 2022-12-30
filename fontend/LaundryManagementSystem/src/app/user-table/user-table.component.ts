@@ -34,7 +34,7 @@ export class UserTableComponent {
     this.sSCustomers();
   }
   pageSize(text:any){
-    this.query.pageSize=text;
+    this.query.pageSize= parseInt(text) ;
     this.sSCustomers();
   }
   sSorting(text:any){
@@ -48,26 +48,29 @@ export class UserTableComponent {
   sPage(event:any){
       console.log(event)
       if(event == "Next"){
-       console.log(this.count)
+       
           var c = this.count/this.query.pageSize
           
-        if(this.query.pageNumber<=c){
+        if(this.query.pageNumber<c){
           this.query.pageNumber=this.query.pageNumber+1
+          this.sSCustomers();
         }
         
         
       }
       else if(event == "Previous"){
-        if(this.query.pageNumber>=1){
+        if(this.query.pageNumber>1){
           this.query.pageNumber=this.query.pageNumber-1
+          this.sSCustomers();
         }
         
       }
       else {
         
-        this.query.pageNumber=event
+        this.query.pageNumber= Number(event);
+        this.sSCustomers();
       }
-      this.sSCustomers();
+      
     
   }
   deleteService(id:any){
