@@ -30,8 +30,8 @@ export class UserTableComponent {
     this.userData.getSearchCustomer(this.query).subscribe((data:any)=>{
       this.users=data.content;
       this.count= data.count;
-      this.noOfPage=this.count/this.query.pageSize
-      
+      this.noOfPage= Math.ceil( this.count/this.query.pageSize);
+      console.log(this.noOfPage)
       
     })
   }

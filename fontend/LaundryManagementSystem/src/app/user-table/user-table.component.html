@@ -81,13 +81,13 @@
                                                 </a>
                                         </li>
 
-                                        <li  class="page-item">
-                                                <a class="page-link" (click)="sPage(a.innerText)" #a>1</a>
+                                        <li *ngFor="let i of numSequence(noOfPage) ,index as p" class="page-item">
+                                                <a class="page-link" (click)="sPage(a.innerText)" #a>{{p+1}}</a>
                                         </li>
-                                        <li class="page-item"><a class="page-link" (click)="sPage(b.innerText)" #b>2</a>
+                                        <!-- <li class="page-item"><a class="page-link" (click)="sPage(b.innerText)" #b>2</a>
                                         </li>
                                         <li class="page-item"><a class="page-link" (click)="sPage(c.innerText)" #c>3</a>
-                                        </li>
+                                        </li> -->
                                         <li class="page-item" >
                                                 <a class="page-link" aria-label="Next" >
                                                         <span aria-hidden="true">&raquo;</span>
