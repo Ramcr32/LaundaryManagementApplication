@@ -93,18 +93,27 @@ public class CustomDaoImp implements  CustomDao{
             predicateList.add(cb.like(customerRoot.get(query.getTitle()),"%"+query.getSearchQuery()+"%"));
         }
 
-        criteriaQuery.where(predicateList.toArray(new Predicate[0]));
+        criteriaQuery.select(customerRoot).where(predicateList.toArray(new Predicate[0]));
         if(!query.getSorting().equalsIgnoreCase("none")){
             criteriaQuery.orderBy(cb.asc(customerRoot.get(query.getSorting())));
         }
-
         TypedQuery<Customer> typedQuery = entityManager.createQuery(criteriaQuery);
-        List<Customer> list = typedQuery.getResultList();
+
+        //count the customer with query
+
+
+        CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
+        countQuery.select(cb.count(countQuery.from(Customer.class)))
+                .where(predicateList.toArray(new Predicate[0]));
+        Long count = entityManager.createQuery(countQuery).getSingleResult();
+
+
+
         if(query.getPageNumber().intValue()>0  ){
             typedQuery.setFirstResult( (query.getPageNumber().intValue()-1)*query.getPageSize().intValue());
         }
 
         typedQuery.setMaxResults(query.getPageSize().intValue());
-        return  new Page(typedQuery.getResultList(), list.size());
+        return  new Page(typedQuery.getResultList(), count.intValue());
     }
 }
