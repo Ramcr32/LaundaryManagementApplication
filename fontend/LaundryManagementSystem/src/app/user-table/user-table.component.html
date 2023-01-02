@@ -80,14 +80,16 @@
                                                                 #previous>Previous</span>
                                                 </a>
                                         </li>
-                                        <li class="page-item"><a class="page-link" (click)="sPage(a.innerText)" #a>1</a>
+
+                                        <li  class="page-item">
+                                                <a class="page-link" (click)="sPage(a.innerText)" #a>1</a>
                                         </li>
                                         <li class="page-item"><a class="page-link" (click)="sPage(b.innerText)" #b>2</a>
                                         </li>
                                         <li class="page-item"><a class="page-link" (click)="sPage(c.innerText)" #c>3</a>
                                         </li>
-                                        <li class="page-item">
-                                                <a class="page-link" aria-label="Next">
+                                        <li class="page-item" >
+                                                <a class="page-link" aria-label="Next" >
                                                         <span aria-hidden="true">&raquo;</span>
                                                         <span class="sr-only" (click)="sPage(next.innerText)"
                                                                 #next>Next</span>

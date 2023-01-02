@@ -1,6 +1,8 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
+import { ResourceLoader } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +31,7 @@ export class PostMethodService {
 
   //login
   url4="http://localhost:8888/admin/login"
-  loginAdminData(data : any){
+  loginAdminData(data : any) : Observable<any>{
     return this.http.post(this.url4,data);
   }
   //logout

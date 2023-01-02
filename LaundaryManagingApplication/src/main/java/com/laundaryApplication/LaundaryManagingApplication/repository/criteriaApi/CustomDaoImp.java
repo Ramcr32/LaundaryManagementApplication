@@ -100,14 +100,10 @@ public class CustomDaoImp implements  CustomDao{
         TypedQuery<Customer> typedQuery = entityManager.createQuery(criteriaQuery);
 
         //count the customer with query
-
-
         CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
         countQuery.select(cb.count(countQuery.from(Customer.class)))
                 .where(predicateList.toArray(new Predicate[0]));
         Long count = entityManager.createQuery(countQuery).getSingleResult();
-
-
 
         if(query.getPageNumber().intValue()>0  ){
             typedQuery.setFirstResult( (query.getPageNumber().intValue()-1)*query.getPageSize().intValue());

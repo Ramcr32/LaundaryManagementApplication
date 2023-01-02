@@ -13,11 +13,16 @@ export class UserTableComponent {
   query:Query=new Query();
   flag:boolean=false;
   count:any;
+  bNext :boolean= true;
+  noOfPage:number=0;
+  numSequence(n: number): Array<number> {
+        return Array(n);
+  }
   constructor(private userData : PostMethodService, private router: Router, private dtxr: DataTransferService){
     this.dtxr.updateApprovalMessage(true);
     
     this.sSCustomers()
-
+    
   }
   sSCustomers(){
     
@@ -25,7 +30,9 @@ export class UserTableComponent {
     this.userData.getSearchCustomer(this.query).subscribe((data:any)=>{
       this.users=data.content;
       this.count= data.count;
-      console.log(this.count)
+      this.noOfPage=this.count/this.query.pageSize
+      
+      
     })
   }
   
@@ -57,6 +64,8 @@ export class UserTableComponent {
         if(this.query.pageNumber<c){
           this.query.pageNumber=this.query.pageNumber+1
           this.sSCustomers();
+        }else{
+            this.bNext=false;
         }
         
         
