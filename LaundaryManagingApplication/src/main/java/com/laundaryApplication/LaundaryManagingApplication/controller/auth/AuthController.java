@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/hostbooks/auth")
+@RequestMapping("/user")
 public class AuthController {
     @Autowired
     private UserDetailsService userDetailsService;
@@ -30,8 +30,8 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request) throws Exception {
 
-        authenticate(request.getUsername(),request.getPassword());
-        UserDetails userDetails=userDetailsService.loadUserByUsername(request.getUsername());
+        authenticate(request.getEmail(),request.getPassword());
+        UserDetails userDetails=userDetailsService.loadUserByUsername(request.getEmail());
         String token=jwtTokenHelper.generateToken(userDetails);
         JwtAuthResponse response=new JwtAuthResponse();
         response.setToken(token);

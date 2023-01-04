@@ -30,7 +30,7 @@ export class PostMethodService {
   }
 
   //login
-  url4="http://localhost:8888/admin/login"
+  url4="http://localhost:8888/user/login"
   loginAdminData(data : any) : Observable<any>{
     return this.http.post(this.url4,data);
   }

@@ -44,7 +44,7 @@ public class AdminController {
         return  new ResponseEntity<>(list, HttpStatus.OK);
     }
     //for admin login
-    @PostMapping(value = "/login")
+    @PostMapping(value = "a/login")
     public ResponseEntity<MyErrorDetails> logInCustomer(@Valid @RequestBody UserDTO user,Error error) {
         String message = sessionService.logIntoAccount(user);
         MyErrorDetails me = new MyErrorDetails(LocalDateTime.now(),message, error.getMessage());
@@ -52,7 +52,7 @@ public class AdminController {
     }
 
     // for admin Logout
-    @PatchMapping(value = "/logout")
+    @PatchMapping(value = "a/logout")
     public ResponseEntity<MyErrorDetails> logOutCustomer(@RequestParam(required = false) String key,Error error) {
         String message = sessionService.logOutFromAccount(key);
         MyErrorDetails me = new MyErrorDetails(LocalDateTime.now(),message, error.getMessage());
