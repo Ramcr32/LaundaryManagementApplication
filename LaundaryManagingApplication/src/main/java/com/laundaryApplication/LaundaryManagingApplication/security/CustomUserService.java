@@ -15,10 +15,12 @@ import org.springframework.stereotype.Service;
 public class CustomUserService implements UserDetailsService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private AdminDao adminDao;
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-        User user = userDao.findByEmail(userEmail);
-        System.out.println(user.getUserId());
-        return (UserDetails) user;
+//        Admin admin = adminDao.findByEmail(userEmail).get();
+            User user = userDao.findByEmail(userEmail);
+        return  user;
     }
 }
