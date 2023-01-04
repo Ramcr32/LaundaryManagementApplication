@@ -43,12 +43,12 @@
                             <tbody>
                                       <tr *ngFor="let user of users">
                                                 <th scope="row">{{user.userId}}</th>
-                                                <td>{{user.userName}}</td>
+                                                <td>{{user.userName | titlecase }}</td>
                                                 <td>{{user.mobile}}</td>
                                                 <td>{{user.email}}</td>
                                                 <td>{{user.address.city}}</td>
                                                 <td>{{user.address.state}}</td>
-                                                <td>{{user.address.country}}</td>
+                                                <td>{{user.address.country | uppercase}}</td>
                                                 <td>{{user.address.pincode}}</td>
                                         <td>
                                                         <button (click)="deleteService(user.userId)">del</button>

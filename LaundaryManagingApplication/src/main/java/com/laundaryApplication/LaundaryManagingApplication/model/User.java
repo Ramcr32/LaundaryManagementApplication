@@ -18,7 +18,7 @@ public class User {
     private String password;
     @Size(min=10, message = "please give valid mobile number")
     private String mobile;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name="id")
     private Address address;
     @Email(message = "please give valid email")

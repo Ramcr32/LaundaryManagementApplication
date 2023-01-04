@@ -1,5 +1,6 @@
 package com.laundaryApplication.LaundaryManagingApplication.repository.criteriaApi;
 
+import com.laundaryApplication.LaundaryManagingApplication.model.Admin;
 import com.laundaryApplication.LaundaryManagingApplication.model.Customer;
 import com.laundaryApplication.LaundaryManagingApplication.model.Employee;
 import com.laundaryApplication.LaundaryManagingApplication.model.ServiceBooking;
@@ -111,5 +112,11 @@ public class CustomDaoImp implements  CustomDao{
 
         typedQuery.setMaxResults(query.getPageSize().intValue());
         return  new Page(typedQuery.getResultList(), count.intValue());
+    }
+    //save admin detail
+    @Override
+    public Admin saveAdmin(Admin admin) {
+
+        return null;
     }
 }
