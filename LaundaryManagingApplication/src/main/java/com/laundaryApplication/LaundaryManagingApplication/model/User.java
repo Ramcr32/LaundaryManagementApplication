@@ -14,7 +14,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
     private String userName;
-    @Size(min = 4 , max = 12, message = "please give valid pasword")
+    @Size(min = 4 , message = "please give valid pasword")
     private String password;
     @Size(min=10, message = "please give valid mobile number")
     private String mobile;

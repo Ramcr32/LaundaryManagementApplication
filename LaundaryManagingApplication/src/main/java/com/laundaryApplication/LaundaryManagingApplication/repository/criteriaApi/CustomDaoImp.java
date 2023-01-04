@@ -6,6 +6,8 @@ import com.laundaryApplication.LaundaryManagingApplication.model.Employee;
 import com.laundaryApplication.LaundaryManagingApplication.model.ServiceBooking;
 import com.laundaryApplication.LaundaryManagingApplication.util.Page;
 import com.laundaryApplication.LaundaryManagingApplication.util.Query;
+import org.hibernate.Session;
+
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -116,7 +118,8 @@ public class CustomDaoImp implements  CustomDao{
     //save admin detail
     @Override
     public Admin saveAdmin(Admin admin) {
+        entityManager.persist(admin);
 
-        return null;
+        return admin;
     }
 }

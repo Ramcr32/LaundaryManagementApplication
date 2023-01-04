@@ -3,6 +3,7 @@ package com.laundaryApplication.LaundaryManagingApplication.service.implementsSe
 import com.laundaryApplication.LaundaryManagingApplication.exceptions.NotFoundException;
 import com.laundaryApplication.LaundaryManagingApplication.model.Admin;
 import com.laundaryApplication.LaundaryManagingApplication.repository.AdminDao;
+import com.laundaryApplication.LaundaryManagingApplication.repository.criteriaApi.CustomDao;
 import com.laundaryApplication.LaundaryManagingApplication.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import java.util.List;
 public class AdminServiceImp implements AdminService {
     @Autowired
     private AdminDao aDao;
+    @Autowired
+    private CustomDao customDao;
     @Override
     public Admin createAdmin(Admin admin) {
 
