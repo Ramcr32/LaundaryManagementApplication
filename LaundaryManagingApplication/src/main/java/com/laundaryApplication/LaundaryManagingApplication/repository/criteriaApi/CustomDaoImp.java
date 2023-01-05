@@ -118,8 +118,16 @@ public class CustomDaoImp implements  CustomDao{
     //save admin detail
     @Override
     public Admin saveAdmin(Admin admin) {
-        entityManager.persist(admin);
+        Session session = entityManager.unwrap(Session.class);
+        String hql = "SELECT COUNT(u) from User as u where u.email=:email";
+        org.hibernate.query.Query query = session.createQuery(hql);
+        query.setParameter("email",admin.getEmail());
+        int a = query.getMaxResults();
+        if(a==0){
+            entityManager.persist(admin);
+            return admin;
+        }
+        return null;
 
-        return admin;
     }
 }

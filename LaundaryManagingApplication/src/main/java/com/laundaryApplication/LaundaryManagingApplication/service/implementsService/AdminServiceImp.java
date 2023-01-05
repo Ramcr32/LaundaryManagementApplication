@@ -22,7 +22,8 @@ public class AdminServiceImp implements AdminService {
     @Override
     public Admin createAdmin(Admin admin) {
         admin.setPassword(passwordEncoder.encode(admin.getPassword()));
-        return aDao.save(admin);
+//        return aDao.save(admin);
+        return customDao.saveAdmin(admin);
     }
 
     @Override
