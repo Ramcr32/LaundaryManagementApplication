@@ -20,7 +20,7 @@ public class CustomUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
 //        Admin admin = adminDao.findByEmail(userEmail).get();
-            User user = userDao.findByEmail(userEmail);
+            Admin user = adminDao.findByEmail(userEmail);
         return  user;
     }
 }

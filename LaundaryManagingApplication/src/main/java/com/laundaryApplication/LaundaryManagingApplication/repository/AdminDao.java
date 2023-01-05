@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface AdminDao extends JpaRepository<Admin,Integer> {
-    public Optional<Admin> findByEmail(String email);
-    @Query("from Admin as a where a.email=:email")
-    public Admin findByemail(@Param("email") String email);
+    public Admin findByEmail(String email);
+//    @Query("from Admin as a where a.email=:email")
+//    public Admin findByemail(@Param("email") String email);
 }

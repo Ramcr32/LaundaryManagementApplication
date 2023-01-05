@@ -26,23 +26,23 @@ public class SessionServiceImp implements  SessionService {
     @Override
     public String logIntoAccount(UserDTO user) {
         String message = "";
-        Optional<Admin> opt = adminDao.findByEmail(user.getEmail());
-        if(!opt.isPresent()){
-            throw new NotFoundException("admin is not found ");
-        }
-        Optional<CurrentUserSession> opt1 = currentUserSessionDao.findById(opt.get().getUserId());
-        if(opt1.isPresent()){
-            throw  new IllegalArgumentException("already loged in");
-        }
-        if(user.getPassword().equals(opt.get().getPassword())){
-            String key = RandomString.make(6);
-            message=key;
-            CurrentUserSession cObject = new CurrentUserSession(opt.get().getUserId(),opt.get().getEmail(),key, LocalDateTime.now());
-            currentUserSessionDao.save(cObject);
-        }
-        else {
-            throw  new NotFoundException("wrong password");
-        }
+//        Optional<Admin> opt = adminDao.findByEmail(user.getEmail());
+//        if(!opt.isPresent()){
+//            throw new NotFoundException("admin is not found ");
+//        }
+//        Optional<CurrentUserSession> opt1 = currentUserSessionDao.findById(opt.get().getUserId());
+//        if(opt1.isPresent()){
+//            throw  new IllegalArgumentException("already loged in");
+//        }
+//        if(user.getPassword().equals(opt.get().getPassword())){
+//            String key = RandomString.make(6);
+//            message=key;
+//            CurrentUserSession cObject = new CurrentUserSession(opt.get().getUserId(),opt.get().getEmail(),key, LocalDateTime.now());
+//            currentUserSessionDao.save(cObject);
+//        }
+//        else {
+//            throw  new NotFoundException("wrong password");
+//        }
         return message;
     }
 

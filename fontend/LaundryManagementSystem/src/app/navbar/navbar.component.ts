@@ -17,14 +17,15 @@ export class NavbarComponent {
     })
   }
   logOut() {
-    this.key = localStorage.getItem("key") + "";
-    this.key = this.key.slice(1, 7);
-    console.log(this.key)
-    this.post.logoutAdminData(this.key).subscribe((result: any) => {
+    // this.key = localStorage.getItem("key") + "";
+    // this.key = this.key.slice(1, 7);
+    // console.log(this.key)
+    // this.post.logoutAdminData(this.key).subscribe((result: any) => {
 
-      console.log(result)
-      this.dtxr.updateApprovalMessage(false);
-    });
+    //   console.log(result)
+    //   this.dtxr.updateApprovalMessage(false);
+    // });
+    localStorage.removeItem("key")
     setTimeout(function () {
       window.location.href = "http://localhost:4200/";
     }, 1000);
