@@ -26,20 +26,21 @@ export class LoginComponent {
         // console.log(data)
         this.spinnerService.requestStarter();
         this.post.loginAdminData(data).subscribe((result: any) => {
-            // console.log(result.message);
+            // console.log(result);
             this.spinnerService.requestEnded();
-            this.msg = result.message;
-            localStorage.setItem("key", JSON.stringify(result.message));
+            this.msg = result.token;
+            localStorage.setItem("key", result.token);
+            if (this.msg != "") {
+                this.datatxr.updateApprovalMessage(true);
+                this.router.navigate(['user-details']);
+            }
 
         }, err => {
             this.spinnerService.resetSpinner();
-            this.errMessage = err.error.message;
+            // this.errMessage = err.error.message;
             // console.log(this.errMessage)
         })
-        if (this.msg != "") {
-            this.datatxr.updateApprovalMessage(true);
-            this.router.navigate(['user-details']);
-        }
+        
 
         // let d =  localStorage.getItem("key")
 

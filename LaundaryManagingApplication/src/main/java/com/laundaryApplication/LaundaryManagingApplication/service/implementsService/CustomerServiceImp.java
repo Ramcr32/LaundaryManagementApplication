@@ -8,6 +8,7 @@ import com.laundaryApplication.LaundaryManagingApplication.service.CustomerServi
 import com.laundaryApplication.LaundaryManagingApplication.util.Page;
 import com.laundaryApplication.LaundaryManagingApplication.util.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +17,13 @@ import java.util.List;
 public class CustomerServiceImp implements CustomerService {
     @Autowired
     private CustomerDao cDao;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private CustomDao customDao;
     @Override
     public Customer createCustomer(Customer customer) {
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         return cDao.save(customer);
     }
 

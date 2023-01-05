@@ -5,6 +5,7 @@ import com.laundaryApplication.LaundaryManagingApplication.model.Employee;
 import com.laundaryApplication.LaundaryManagingApplication.repository.EmployeeDao;
 import com.laundaryApplication.LaundaryManagingApplication.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +14,11 @@ import java.util.List;
 public class EmployeeServiceImp implements EmpService {
     @Autowired
     private EmployeeDao eDao;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public Employee createEmployee(Employee emp) {
+        emp.setPassword(passwordEncoder.encode(emp.getPassword()));
         return eDao.save(emp);
     }
 

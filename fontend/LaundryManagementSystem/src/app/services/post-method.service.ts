@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
 
@@ -9,7 +9,10 @@ import { ResourceLoader } from '@angular/compiler';
 })
 export class PostMethodService {
   url="http://localhost:8888/admin/"
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+  
+ }
+headers:HttpHeaders = new HttpHeaders();;
 
   getUrl(){
 
@@ -54,7 +57,8 @@ export class PostMethodService {
         return this.http.put(this.url6,data);
   }
   getSearchCustomer(data:any){
-    return this.http.post(this.url6+"search/",data);
+    
+    return this.http.post(this.url6+"search/",data );
   }
 }
 

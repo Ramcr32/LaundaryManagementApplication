@@ -6,6 +6,7 @@ import com.laundaryApplication.LaundaryManagingApplication.repository.AdminDao;
 import com.laundaryApplication.LaundaryManagingApplication.repository.criteriaApi.CustomDao;
 import com.laundaryApplication.LaundaryManagingApplication.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +17,11 @@ public class AdminServiceImp implements AdminService {
     private AdminDao aDao;
     @Autowired
     private CustomDao customDao;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public Admin createAdmin(Admin admin) {
-
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         return aDao.save(admin);
     }
 
