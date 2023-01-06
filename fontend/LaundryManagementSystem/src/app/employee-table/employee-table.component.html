@@ -1,0 +1,106 @@
+<div class="d-flex flex-column">
+    <div class="d-flex flex-row">
+            <div><input type="text" placeholder="search" #searchValue (keyup)="sSearch(searchValue.value)" /></div>
+            <div>
+                    <select #titleValue (click)="sTitle(titleValue.value)">
+                            <option value="userName">title</option>
+                            <option value="userId">id</option>
+                            <option value="userName">name</option>
+                            <option value="mobile">mobile</option>
+                            <option value="email">email</option>
+                    </select>
+            </div>
+            <div>
+                    <select #sortingValue (click)="sSorting(sortingValue.value)">
+                            <option value="userId">sorting</option>
+                            <option value="userId">id</option>
+                            <option value="userName">name</option>
+                            <option value="mobile">mobile</option>
+                            <option value="email">email</option>
+                    </select>
+            </div>
+            <div></div>
+
+    </div>
+    <div>
+            <table class="table">
+                        <thead>
+                                  <tr>
+                                            <th scope="col">id</th>
+                                            <th scope="col">name</th>
+                                            <th scope="col">mobile</th>
+                                            <th scope="col">email</th>
+                                            <th scope="col">city</th>
+                                            <th scope="col">state</th>
+                                            <th scope="col">country</th>
+                                            <th scope="col">pincode</th>
+                                    <th>update</th>
+                                    <th>delete</th>
+                                    <th>view</th>
+                                       
+                            </tr>
+                                </thead>
+                        <tbody>
+                                  <tr *ngFor="let user of users">
+                                            <th scope="row">{{user.userId}}</th>
+                                            <td>{{user.userName | titlecase }}</td>
+                                            <td>{{user.mobile}}</td>
+                                            <td>{{user.email}}</td>
+                                            <td>{{user.address.city}}</td>
+                                            <td>{{user.address.state}}</td>
+                                            <td>{{user.address.country | uppercase}}</td>
+                                            <td>{{user.address.pincode}}</td>
+                                    <td>
+                                                    <button (click)="deleteService(user.userId)">del</button>
+                                                </td>
+                                    <td>
+                                                 <button (click)="updateService(user.userId)">update</button>
+                                             </td>
+                                    <td>
+                                             <button (click)="viewService(user.userId)">view</button>
+                                    </td>
+                                       
+                            </tr>
+                                 
+                                </tbody>
+
+                     
+            </table>
+            <div class="form-outline" style="width: 3rem;" >
+                    <h4>size</h4><input min="1" max="20" type="text" inputmode="numeric" #pSizeNumber (keyup)="pageSize(pSizeNumber.value)" id="typeNumber" class="form-control"  />
+                    
+            </div>
+            <div>
+                    <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                    <li class="page-item">
+                                            <a class="page-link" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only" (click)="sPage(previous.innerText)"
+                                                            #previous>Previous</span>
+                                            </a>
+                                    </li>
+
+                                    <li *ngFor="let i of numSequence(noOfPage) ,index as p" class="page-item">
+                                            <a class="page-link" (click)="sPage(a.innerText)" #a>{{p+1}}</a>
+                                    </li>
+                                    <!-- <li class="page-item"><a class="page-link" (click)="sPage(b.innerText)" #b>2</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" (click)="sPage(c.innerText)" #c>3</a>
+                                    </li> -->
+                                    <li class="page-item" >
+                                            <a class="page-link" aria-label="Next" >
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only" (click)="sPage(next.innerText)"
+                                                            #next>Next</span>
+                                            </a>
+                                    </li>
+                            </ul>
+                    </nav>
+            </div>
+            <div>
+                    <a class="btn btn-primary" routerLink="register-user" routerLinkActive="active"
+                            role="button">Add</a>
+            </div>
+    </div>
+</div>

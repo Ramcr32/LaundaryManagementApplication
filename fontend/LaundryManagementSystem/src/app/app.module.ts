@@ -14,6 +14,7 @@ import { UserUpdateComponent } from './user-update/user-update.component';
 import { BookingListComponent } from './booking-list/booking-list.component';
 import { LoaderComponent } from './loader/loader.component';
 import { AuthInterceptorInterceptor } from './util/auth-interceptor.interceptor';
+import { EmployeeTableComponent } from './employee-table/employee-table.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthInterceptorInterceptor } from './util/auth-interceptor.interceptor'
     UserTableComponent,
     UserUpdateComponent,
     BookingListComponent,
-    LoaderComponent
+    LoaderComponent,
+    EmployeeTableComponent
   ],
   imports: [
     BrowserModule,

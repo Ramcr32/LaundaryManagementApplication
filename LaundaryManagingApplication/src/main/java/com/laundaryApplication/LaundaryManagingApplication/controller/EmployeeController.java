@@ -35,6 +35,6 @@ public class EmployeeController {
     @GetMapping("/")
     public ResponseEntity<List<Employee>> getAllEmployeeHandler(){
         List<Employee> list = empService.getAll();
-        return new ResponseEntity<>(list, HttpStatus.FOUND);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }

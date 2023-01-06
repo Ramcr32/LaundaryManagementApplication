@@ -31,6 +31,9 @@ headers:HttpHeaders = new HttpHeaders();;
   saveEmployeeData(data: any){
     return this.http.post(this.url3,data);
   }
+  getEmployeeData(){
+    return this.http.get(this.url3);
+  }
 
   //login
   url4="http://localhost:8888/user/login"
