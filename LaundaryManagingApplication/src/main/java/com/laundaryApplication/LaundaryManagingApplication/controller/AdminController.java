@@ -5,10 +5,14 @@ import com.laundaryApplication.LaundaryManagingApplication.model.Admin;
 import com.laundaryApplication.LaundaryManagingApplication.model.UserDTO;
 import com.laundaryApplication.LaundaryManagingApplication.service.AdminService;
 import com.laundaryApplication.LaundaryManagingApplication.service.SessionService;
+import com.laundaryApplication.LaundaryManagingApplication.util.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -23,9 +27,20 @@ public class AdminController {
 
     @Autowired
     private SessionService sessionService;
+    @Autowired
+    private UserValidator userValidator;
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+        binder.setValidator(userValidator);
+    }
     @PostMapping("/")
-    public ResponseEntity<Admin> createNewAdminHandler(@Valid @RequestBody Admin admin){
+    public ResponseEntity<?> createNewAdminHandler(@Valid @RequestBody Admin admin, Errors errors, WebRequest wr){
+        if(errors.hasErrors()){
+            MyErrorDetails myErrorDetails = new MyErrorDetails(LocalDateTime.now(), errors.getFieldError().getDefaultMessage(),wr.getDescription(false));
+            return new ResponseEntity<>(myErrorDetails,HttpStatus.BAD_REQUEST);
+        }
         Admin returnAdmin =adminService.createAdmin(admin);
+
         return new ResponseEntity<>(returnAdmin, HttpStatus.ACCEPTED );
     }
     @PutMapping("/")

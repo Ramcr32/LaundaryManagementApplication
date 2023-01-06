@@ -11,5 +11,6 @@ public interface AdminService {
     public Admin deleteAdmin(Integer adminId) throws NotFoundException;
 
     public List<Admin> getAll();
+    public Boolean checkUserByEmail(String email);
 
 }

@@ -134,4 +134,18 @@ public class CustomDaoImp implements  CustomDao{
         return null;
 
     }
+
+    @Override
+    public Boolean isEmailExist(String email) {
+        Session session = entityManager.unwrap(Session.class);
+
+        String hql = "SELECT COUNT(u) FROM User as u where u.email=:email";
+        org.hibernate.query.Query query = session.createQuery(hql);
+        query.setString("email", email);
+        long a =(Long) query.uniqueResult();
+        if(a==0){
+            return false;
+        }
+        return true;
+    }
 }

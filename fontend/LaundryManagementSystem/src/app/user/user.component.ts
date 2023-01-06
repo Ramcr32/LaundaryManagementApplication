@@ -29,7 +29,13 @@ export class UserComponent {
     if(this.desig=="admin"){
       this.userData.saveAdminData(this.user).subscribe((result:any)=>{
       console.log(result);
-      })
+          setTimeout(function(){
+            window.location.href= "http://localhost:4200/user-details";
+         }, 2000);
+      },
+        err=>{
+          alert(err.error.message)
+        })
     }
     else if(this.desig=="customer"){
       this.userData.saveCustomerData(this.user).subscribe((result:any)=>{
@@ -41,9 +47,7 @@ export class UserComponent {
         console.log(result);
         })
     }
-    setTimeout(function(){
-        window.location.href= "http://localhost:4200/user-details";
-     }, 1000);
+    
   }
 
 

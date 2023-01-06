@@ -19,4 +19,5 @@ public interface CustomDao {
     public List<Employee> getAllEmployees(Query query);
     public Page getAllCustomers(Query query);
     public Admin saveAdmin(Admin admin);
+    public Boolean isEmailExist(String email);
 }

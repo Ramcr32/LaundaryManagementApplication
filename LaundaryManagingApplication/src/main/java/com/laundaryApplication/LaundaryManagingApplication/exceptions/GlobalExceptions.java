@@ -9,7 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 public class GlobalExceptions {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<MyErrorDetails> myExpHandler1(NotFoundException ie,WebRequest wr)

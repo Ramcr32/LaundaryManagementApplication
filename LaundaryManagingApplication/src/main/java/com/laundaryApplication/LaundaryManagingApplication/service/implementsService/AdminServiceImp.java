@@ -46,4 +46,9 @@ public class AdminServiceImp implements AdminService {
     public List<Admin> getAll() {
         return aDao.findAll();
     }
+
+    @Override
+    public Boolean checkUserByEmail(String email) {
+        return customDao.isEmailExist(email);
+    }
 }
