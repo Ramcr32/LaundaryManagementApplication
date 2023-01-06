@@ -24,7 +24,7 @@ public class AdminController {
     @Autowired
     private SessionService sessionService;
     @PostMapping("/")
-    public ResponseEntity<Admin> createNewAdminHandler(@RequestBody Admin admin){
+    public ResponseEntity<Admin> createNewAdminHandler(@Valid @RequestBody Admin admin){
         Admin returnAdmin =adminService.createAdmin(admin);
         return new ResponseEntity<>(returnAdmin, HttpStatus.ACCEPTED );
     }

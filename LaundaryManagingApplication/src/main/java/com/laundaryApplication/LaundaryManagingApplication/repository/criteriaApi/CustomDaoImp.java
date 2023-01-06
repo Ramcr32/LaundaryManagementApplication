@@ -8,6 +8,7 @@ import com.laundaryApplication.LaundaryManagingApplication.util.Page;
 import com.laundaryApplication.LaundaryManagingApplication.util.Query;
 import org.hibernate.Session;
 
+import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -118,13 +119,16 @@ public class CustomDaoImp implements  CustomDao{
     //save admin detail
     @Override
     public Admin saveAdmin(Admin admin) {
+        //using hibernate query language
         Session session = entityManager.unwrap(Session.class);
-        String hql = "SELECT COUNT(u) from User as u where u.email=:email";
+
+        String hql = "SELECT COUNT(u) FROM User as u where u.email=:email";
         org.hibernate.query.Query query = session.createQuery(hql);
-        query.setParameter("email",admin.getEmail());
-        int a = query.getMaxResults();
+        query.setString("email", admin.getEmail());
+        long a =(Long) query.uniqueResult();
+        System.out.println(a);
         if(a==0){
-            entityManager.persist(admin);
+            session.save(admin);
             return admin;
         }
         return null;
