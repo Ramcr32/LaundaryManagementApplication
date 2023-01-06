@@ -126,7 +126,7 @@ public class CustomDaoImp implements  CustomDao{
         org.hibernate.query.Query query = session.createQuery(hql);
         query.setString("email", admin.getEmail());
         long a =(Long) query.uniqueResult();
-        System.out.println(a);
+//        System.out.println(a);
         if(a==0){
             session.save(admin);
             return admin;
