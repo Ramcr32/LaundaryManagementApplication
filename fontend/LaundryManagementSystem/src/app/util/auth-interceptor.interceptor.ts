@@ -4,10 +4,11 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpHeaders
+  HttpHeaders,
+  HttpErrorResponse
 } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptorInterceptor implements HttpInterceptor {
@@ -19,7 +20,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
     // let authService = this.injector.get(PostMethodService)
     // console.warn(token)
     if (!token) {
-      return next.handle(request);
+      return next.handle(request) ;
     }
 
     request = request
@@ -37,6 +38,30 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
       })
     });
         
-    return next.handle(request);
+    return next.handle(request)
+            .pipe(catchError((err:any)=>{
+              console.log("hello error")
+              if(err instanceof HttpErrorResponse){
+                
+                if(err.error instanceof ErrorEvent){
+                   console.error("Error Event");
+                }
+                else{
+                  console.log(`error status : ${err.status} ${err.statusText}`);
+                  switch(err.status){
+                    case 401:
+                      console.error("kjhkhjkhk");
+                      break;
+                    case 403:
+                      console.error("forbidden")
+                      break;
+                  }
+                }
+              }
+              else{
+                console.error("kjkjkj")
+              }
+              return throwError(err);
+            }))
   }
 }

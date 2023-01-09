@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,7 @@ import { BookingListComponent } from './booking-list/booking-list.component';
 import { LoaderComponent } from './loader/loader.component';
 import { AuthInterceptorInterceptor } from './util/auth-interceptor.interceptor';
 import { EmployeeTableComponent } from './employee-table/employee-table.component';
+import { GlobalErrorHandlerInterceptor } from './util/global-error-handler.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,10 @@ import { EmployeeTableComponent } from './employee-table/employee-table.componen
     provide :HTTP_INTERCEPTORS,
     useClass : AuthInterceptorInterceptor,
     multi : true
+  },
+  {
+    provide: ErrorHandler,
+    useClass :GlobalErrorHandlerInterceptor
   }],
   bootstrap: [AppComponent]
 })

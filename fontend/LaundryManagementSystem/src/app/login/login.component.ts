@@ -37,7 +37,13 @@ export class LoginComponent {
 
         }, err => {
             this.spinnerService.resetSpinner();
-            this.errMessage = err.error.message;
+            if(err.error==undefined){
+                this.errMessage = err;
+            }
+            else{
+                this.errMessage = err.error.message;
+            }
+            
             // console.log(this.errMessage)
         })
         
